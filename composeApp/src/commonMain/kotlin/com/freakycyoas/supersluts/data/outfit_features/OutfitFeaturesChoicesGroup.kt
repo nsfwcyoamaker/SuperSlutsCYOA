@@ -1,0 +1,40 @@
+package com.freakycyoas.supersluts.data.outfit_features
+
+import com.freakycyoas.supersluts.data.MultipleMixedChoiceSelector
+import com.freakycyoas.supersluts.model.ChoicesGroup
+
+object OutfitFeaturesChoicesGroup: ChoicesGroup by MultipleMixedChoiceSelector(listOf(
+    OutfitFeatureMask,
+    OutfitFeatureVisionDevice,
+    OutfitFeatureHelmet,
+    OutfitFeatureMakeup,
+    OutfitFeatureCape,
+    OutfitFeatureNanoOutfit,
+    OutfitFeatureArmor(),
+    OutfitFeatureWeapon(),
+    OutfitFeaturePowerEnhancingOutfit(),
+    OutfitFeatureBoobWindow,
+    OutfitFeatureVCleavage,
+    OutfitFeatureOpenTop,
+    OutfitFeatureTransparent,
+    OutfitFeaturePasties,
+    OutfitFeaturePiercings,
+    OutfitFeatureCamelString,
+    OutfitFeatureCrotchWindow,
+    OutfitFeatureOpenBottom,
+    OutfitFeatureThong,
+    OutfitFeatureButtWindows,
+    OutfitFeatureAnusWindow,
+    OutfitFeatureCockSleeve,
+    OutfitFeatureLoinCloth,
+    OutfitFeatureChastityDevice,
+    OutfitFeatureAntiBulgeHammerspace,
+    OutfitFeaturePowerAttunedOutfit,
+    OutfitFeatureNipplePlugs,
+    OutfitFeatureUrethralPlug,
+    OutfitFeaturePussyPlug,
+    OutfitFeatureButtPlug,
+    OutfitFeatureUtilityBelt,
+    OutfitFeatureRocketBoots,
+    OutfitFeatureHighHeels,
+))

@@ -1,0 +1,6 @@
+package com.freakycyoas.supersluts.data.superhero_license
+
+import com.freakycyoas.supersluts.data.SingleChoiceSelector
+import com.freakycyoas.supersluts.model.ChoicesGroup
+
+object SuperheroLicenseChoicesGroup: ChoicesGroup by SingleChoiceSelector(listOf(SuperheroLicenseNoLicense, SuperheroLicenseSidekickLicense, SuperheroLicenseSuperheroLicense))

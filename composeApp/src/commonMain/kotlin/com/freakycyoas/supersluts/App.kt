@@ -1,10 +1,20 @@
 package com.freakycyoas.supersluts
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.freakycyoas.supersluts.di.global
+import com.freakycyoas.supersluts.theme.SurfaceColor
+import com.freakycyoas.supersluts.view.MainPage
+import org.kodein.di.compose.withDI
 
 @Composable
-@Preview
 fun App() {
-
+    withDI(global) {
+        MaterialTheme {
+            Surface(color = SurfaceColor) {
+                MainPage()
+            }
+        }
+    }
 }
