@@ -3,7 +3,7 @@ package com.freakycyoas.supersluts.view.sections
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -58,7 +58,7 @@ object GenderSection: MainPageSection {
                         }
                     },
                     modifier = Modifier
-                        .width(choiceRowItemWidth)
+                        .requiredWidth(choiceRowItemWidth)
                         .clip(BottomRightCornerCutShape)
                         .background(color = BlackBoxBackgroundColor)
                         .drawWithContent {
@@ -80,7 +80,7 @@ object GenderSection: MainPageSection {
                         }
                     },
                     modifier = Modifier
-                        .width(choiceRowItemWidth)
+                        .requiredWidth(choiceRowItemWidth)
                         .clip(BottomRightCornerCutShape)
                         .background(color = BlackBoxBackgroundColor)
                         .drawWithContent {

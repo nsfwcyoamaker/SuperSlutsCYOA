@@ -66,7 +66,7 @@ class OutfitFeatureArmor(
     override val levels: List<ChoiceLevel> = PowersSuperhumanDurability(null)
         .levels
         .map {
-            (it as com.freakycyoas.supersluts.data.PowerLevel).let {
+            (it as PowerLevel).let {
                 OutfitGoldLevel(
                     number = it.number,
                     outfitGoldPoints = (floor(it.powerPoints.amount.toDouble() / 2.0).toInt()).gp,

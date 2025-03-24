@@ -10,8 +10,9 @@ class LeveledChoicePointsBearer(
     @Stable val levels: List<ChoiceLevel>,
     @Stable val selectedLevel: Int?
 ): PointsBearerItem {
-    @Stable override fun grantedPowerPoints(allSelectedChoices: List<Choice>): PowerPoints = selectedLevel?.let { levels.single { it.number == selectedLevel }.powerPoints } ?: 0.pp
-    @Stable override fun grantedGoldPoints(allSelectedChoices: List<Choice>): GoldPoints = selectedLevel?.let { levels.single { it.number == selectedLevel }.goldPoints } ?: 0.gp
-    @Stable override fun grantedOutfitGoldPoints(allSelectedChoices: List<Choice>): GoldPoints = selectedLevel?.let { levels.single { it.number == selectedLevel }.outfitGoldPoints } ?: 0.gp
-    @Stable override fun grantedFatePoints(allSelectedChoices: List<Choice>): FatePoints = selectedLevel?.let { levels.single { it.number == selectedLevel }.fatePoints } ?: 0.fp
+    val level: ChoiceLevel? = selectedLevel?.let { levels.single { it.number == selectedLevel } }
+    @Stable override fun grantedPowerPoints(allSelectedChoices: List<Choice>): PowerPoints = level?.powerPoints ?: 0.pp
+    @Stable override fun grantedGoldPoints(allSelectedChoices: List<Choice>): GoldPoints = level?.goldPoints ?: 0.gp
+    @Stable override fun grantedOutfitGoldPoints(allSelectedChoices: List<Choice>): GoldPoints = level?.outfitGoldPoints ?: 0.gp
+    @Stable override fun grantedFatePoints(allSelectedChoices: List<Choice>): FatePoints = level?.fatePoints ?: 0.fp
 }

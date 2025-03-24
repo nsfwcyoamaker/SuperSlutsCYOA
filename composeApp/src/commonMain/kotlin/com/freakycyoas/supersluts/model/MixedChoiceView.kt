@@ -8,7 +8,7 @@ import androidx.compose.runtime.Stable
 sealed class MixedChoiceView {
     @Immutable
     @Stable
-    data class Simple(val choiceView: com.freakycyoas.supersluts.model.ChoiceView): MixedChoiceView()
+    data class Simple(val choiceView: ChoiceView): MixedChoiceView()
     @Immutable
     @Stable
     data class Leveled(val leveledChoiceView: LeveledChoiceView): MixedChoiceView()

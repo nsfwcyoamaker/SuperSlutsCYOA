@@ -4,8 +4,7 @@ import com.freakycyoas.supersluts.model.*
 
 class MultipleMixedChoiceSelector(override val choices: List<MainChoice>): ChoicesGroup {
     private val main = MultipleChoiceSelector(choices)
-    private val leveled =
-        com.freakycyoas.supersluts.data.DefaultLeveledChoicesGroup(choices.filterIsInstance<LeveledMainChoice>())
+    private val leveled = DefaultLeveledChoicesGroup(choices.filterIsInstance<LeveledMainChoice>())
     private val multibuy = DefaultMultibuyChoicesGroup(choices.filterIsInstance<MultibuyMainChoice>())
     private val multiselect = DefaultMultiselectChoicesGroup(choices.filterIsInstance<MultiselectMainChoice>())
 

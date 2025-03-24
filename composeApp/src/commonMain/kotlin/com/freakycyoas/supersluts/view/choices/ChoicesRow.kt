@@ -7,14 +7,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +31,6 @@ import compose.icons.feathericons.Minus
 import compose.icons.feathericons.Plus
 import compose.icons.feathericons.Trash2
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun ChoicesRow(
@@ -81,7 +76,7 @@ fun SimpleChoicesRow(
                 if(choiceState != null) {
                     DrawbackChoiceItem(choiceState, { onChoiceSelected(choiceState.choice) }, choiceWidth, modifier = Modifier.fillMaxHeight())
                 } else {
-                    Box(modifier = Modifier.width(choiceWidth).fillMaxHeight())
+                    Box(modifier = Modifier.requiredWidth(choiceWidth).fillMaxHeight())
                 }
             }
         }
@@ -124,13 +119,13 @@ private fun MainChoiceItem(
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .width(width)
+                .requiredWidth(width)
                 .aspectRatio(1f, false)
                 .background(Color.Black),
         )
 
-        Box(modifier = Modifier.width(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
-        Column(modifier = Modifier.width(width).weight(1f).background(color = BlackBoxBackgroundColor).padding(
+        Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
+        Column(modifier = Modifier.requiredWidth(width).weight(1f).background(color = BlackBoxBackgroundColor).padding(
             choiceTextPadding
         )) {
             Text(
@@ -176,7 +171,7 @@ private fun DrawbackChoiceItem(
                 }
             }
     ) {
-        Column(modifier = Modifier.width(width).weight(1f).background(color = GrayBoxBackgroundColor)) {
+        Column(modifier = Modifier.requiredWidth(width).weight(1f).background(color = GrayBoxBackgroundColor)) {
             Column(
                 modifier = Modifier.padding(choiceTextPadding)
             ) {
@@ -202,7 +197,7 @@ private fun DrawbackChoiceItem(
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .width(width)
+                    .requiredWidth(width)
                     .aspectRatio(1f, false),
             )
         }
@@ -243,7 +238,7 @@ fun SpannableDrawbacksChoicesRow(
                     if(choiceState != null) {
                         SpannedDrawbackChoiceItem(choiceState, { onChoiceSelected(choiceState.choice) }, span, choiceWidth, itemSpacing, modifier = Modifier.fillMaxHeight())
                     } else {
-                        Box(modifier = Modifier.width(choiceWidth).fillMaxHeight())
+                        Box(modifier = Modifier.requiredWidth(choiceWidth).fillMaxHeight())
                     }
                 }
         }
@@ -279,7 +274,7 @@ fun SpannedDrawbackChoiceItem(
             }
     ) {
         Column(
-            modifier = Modifier.width(totalWidth).weight(1f).background(color = GrayBoxBackgroundColor),
+            modifier = Modifier.requiredWidth(totalWidth).weight(1f).background(color = GrayBoxBackgroundColor),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -343,7 +338,7 @@ fun LeveledChoicesRow(
                 if(choiceState != null) {
                     DrawbackChoiceItem(choiceState, { onDrawbackSelected(choiceState.choice as DrawbackChoice) }, choiceWidth, modifier = Modifier.fillMaxHeight())
                 } else {
-                    Box(modifier = Modifier.width(choiceWidth).fillMaxHeight())
+                    Box(modifier = Modifier.requiredWidth(choiceWidth).fillMaxHeight())
                 }
             }
         }
@@ -380,12 +375,12 @@ fun LeveledMainChoiceItem(
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .width(width)
+                .requiredWidth(width)
                 .aspectRatio(1f, false)
                 .background(Color.Black),
         )
-        Box(modifier = Modifier.width(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
-        Column(modifier = Modifier.width(width).weight(1f).background(color = BlackBoxBackgroundColor).padding(
+        Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
+        Column(modifier = Modifier.requiredWidth(width).weight(1f).background(color = BlackBoxBackgroundColor).padding(
             choiceTextPadding
         )) {
             Text(
@@ -475,13 +470,13 @@ fun SlottedLeveledChoicesRow(
         verticalArrangement = Arrangement.Center,
     ) {
         Row(
-            modifier = Modifier.height(IntrinsicSize.Max).width((choiceWidth * 3) + (itemSpacing * 2)),
+            modifier = Modifier.height(IntrinsicSize.Max).requiredWidth((choiceWidth * 3) + (itemSpacing * 2)),
             horizontalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.End),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if(row.size < choicesRowSpan) {
                 Box(
-                    modifier = Modifier.fillMaxHeight().width(choiceWidth),
+                    modifier = Modifier.fillMaxHeight().requiredWidth(choiceWidth),
                     contentAlignment = Alignment.Center,
                 ) {
                     Icons.Default.Add
@@ -503,7 +498,7 @@ fun SlottedLeveledChoicesRow(
                     )
 
                     Box(
-                        modifier = Modifier.wrapContentHeight().width(choiceWidth),
+                        modifier = Modifier.wrapContentHeight().requiredWidth(choiceWidth),
                         contentAlignment = Alignment.Center,
                     ) {
                         Icon(Icons.Default.Delete, null, tint = BlackBoxTitleTextColor,  modifier = Modifier.size(48.dp).clip(CircleShape).background(color = BlackBoxBackgroundColor).clickable { onSlotRemoved(choiceState.choice) })
@@ -553,14 +548,14 @@ fun MultibuyMainChoiceItem(
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .width(width)
+                    .requiredWidth(width)
                     .aspectRatio(1f, false)
                     .background(Color.Black),
             )
-            Box(modifier = Modifier.width(width).height(4.dp).background(color = RedBoxBackgroundColor))
+            Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor))
             Column(
                 modifier = Modifier
-                    .width(width)
+                    .requiredWidth(width)
                     .background(color = BlackBoxBackgroundColor)
                     .padding(choiceTextPadding)
             ) {
@@ -585,7 +580,7 @@ fun MultibuyMainChoiceItem(
 
         Column(
             modifier = Modifier
-                .width(width)
+                .requiredWidth(width)
                 .background(color = BlackBoxBackgroundColor)
                 .drawWithContent {
                     if(choiceState.boughtTimes > 0) {
@@ -761,14 +756,14 @@ fun MultiselectMainChoiceItem(
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .width(width)
+                    .requiredWidth(width)
                     .aspectRatio(1f, false)
                     .background(Color.Black),
             )
-            Box(modifier = Modifier.width(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
+            Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
             Column(
                 modifier = Modifier
-                    .width(width)
+                    .requiredWidth(width)
                     .background(color = BlackBoxBackgroundColor)
                     .padding(choiceTextPadding)
             ) {
@@ -793,7 +788,7 @@ fun MultiselectMainChoiceItem(
 
         Column(
             modifier = Modifier
-                .width(width)
+                .requiredWidth(width)
                 .background(color = BlackBoxBackgroundColor)
                 .drawWithContent {
                     if(choiceState.selectedChoices.isNotEmpty()) {
@@ -965,7 +960,7 @@ fun MixedChoicesRow(
                 if(choiceState != null) {
                     DrawbackChoiceItem(choiceState, { onChoiceSelected(choiceState.choice) }, choiceWidth, modifier = Modifier.fillMaxHeight())
                 } else {
-                    Box(modifier = Modifier.width(choiceWidth).fillMaxHeight())
+                    Box(modifier = Modifier.requiredWidth(choiceWidth).fillMaxHeight())
                 }
             }
         }
