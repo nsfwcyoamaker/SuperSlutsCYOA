@@ -1,8 +1,11 @@
 package com.freakycyoas.supersluts.view
 
+import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,13 +23,23 @@ fun MainPage() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        LazyColumn(
+        Row(
             modifier = Modifier.weight(1f).fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            items(sectionsItems) { sectionItem ->
-                sectionItem()
+            val lazyListState = rememberLazyListState()
+            LazyColumn(
+                state = lazyListState,
+                modifier = Modifier.weight(1f).fillMaxHeight(),
+                verticalArrangement = Arrangement.spacedBy(32.dp)
+            ) {
+                items(sectionsItems) { sectionItem ->
+                    sectionItem()
+                }
             }
+
+            VerticalScrollbar(
+                adapter = rememberScrollbarAdapter(lazyListState)
+            )
         }
 
         Box(
