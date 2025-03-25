@@ -13,5 +13,5 @@ object IdentitySecretIdentity: MainChoice by SimpleMainChoice(
     name = "SECRET IDENTITY",
     text = AnnotatedString("You’ll have a secret identity. But it will only remain secret for as long as it remains secret. Watch out for snooping reporters and overzealous fans. Some supervillains also take joy in unmasking superheroes."),
     goldPoints = 0.gp,
-    incompatibleWith = { listOf(com.freakycyoas.supersluts.data.contracts.ContractsRealityShow) }
+    incompatibleWith = { listOf(ContractsRealityShow) }
 )

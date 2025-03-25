@@ -16,5 +16,5 @@ object AppearanceMetahuman: MainChoice by SimpleMainChoice(
     name = "METAHUMAN",
     text = AnnotatedString("You must choose to gain at least minor biologically impossible body feature. For example, your hair is made out of slime, your eyes glow red or your hair is made out of harmless fire."),
     powerPoints = 4.pp,
-    linkedDrawbackChoice = { AppearanceOtherwordly },
+    linkedDrawbackChoice = { AppearanceOtherworldly },
 )

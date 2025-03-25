@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.breast_size_FLAT
 object BreastSizeFlat: MainChoice by SimpleMainChoice(
     image = Res.drawable.breast_size_FLAT,
     name = "FLAT",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeBreastEnvy },
+    linkedDrawbackChoice = { BreastSizeBreastEnvy },
     text = AnnotatedString("Do you want to be flat as a little girl? Being flat-chested looks best when you’re either male or have a young or petite body."),
     powerPoints = 2.pp,
 )

@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.body_size_SMALL
 object BodySizeSmall: MainChoice by SimpleMainChoice(
     image = Res.drawable.body_size_SMALL,
     name = "SMALL",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.body_size.BodySizeSubmissive },
+    linkedDrawbackChoice = { BodySizeSubmissive },
     text = AnnotatedString("Perhaps you want to be a bit taller? How about the size of a small child? It would make you really approachable, but some might not take you seriously because of your height... or lack of it."),
     powerPoints = 3.pp,
 )

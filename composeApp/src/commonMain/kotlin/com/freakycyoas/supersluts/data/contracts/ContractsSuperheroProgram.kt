@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.contracts_SUPERHERO_PROGRAM
 
 @Immutable
 @Stable
-object ContractsSuperheroProgram: MainChoice by com.freakycyoas.supersluts.data.contracts.ContractChoice(
+object ContractsSuperheroProgram: MainChoice by ContractChoice(
     image = Res.drawable.contracts_SUPERHERO_PROGRAM,
     name = "SUPERHERO PROGRAM",
     text = AnnotatedString("You will basically get paid to breed with other superheroes in the Superhero Program. The purpose of this program is to create the next generation of superheroes. Females will need to give birth to at least 4 children per every 10 years and males will be expected to impregnate a minimum of 60 superheroes per year."),

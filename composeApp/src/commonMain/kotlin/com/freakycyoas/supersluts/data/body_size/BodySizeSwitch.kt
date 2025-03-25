@@ -17,8 +17,8 @@ object BodySizeSwitch: DrawbackChoice by SimpleDrawbackChoice(
     text = AnnotatedString("You will randomly switch between being super dominant and confident to being super submissive and meek. The change can happen at any time but it will have a tendency to happen when there is a comedic effect to it."),
     givenPowerPoints = 10.pp,
     incompatibleWith = { listOf(
-        com.freakycyoas.supersluts.data.body_size.BodySizeSubmissive,
-        com.freakycyoas.supersluts.data.body_size.BodySizeDominant
+        BodySizeSubmissive,
+        BodySizeDominant
     ) },
-    linkedMainChoice = { com.freakycyoas.supersluts.data.body_size.BodySizeAverage }
+    linkedMainChoice = { BodySizeAverage }
 )

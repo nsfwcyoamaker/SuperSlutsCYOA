@@ -40,15 +40,14 @@ class OutfitFeaturePowerEnhancingOutfit(
             .filterIsInstance<LeveledMainChoice>()
             .filter { choice -> choice::class in powers }
             .filter { power -> power.selectedLevel == 1 }
-            .minus(selectedChoices)
+            .minus(selectedChoices.toSet())
     }
 
     override fun ofSelections(choices: List<Choice>): MultiselectMainChoice {
         return OutfitFeaturePowerEnhancingOutfit(choices)
     }
 
-    override fun canBeTaken(allSelectedChoices: List<Choice>): Boolean =
-        selectedChoices.isNotEmpty() || getPossibleSelections(allSelectedChoices).isNotEmpty()
+    override fun canBeTaken(allSelectedChoices: List<Choice>): Boolean = selectedChoices.isNotEmpty() || getPossibleSelections(allSelectedChoices).isNotEmpty()
 
     override fun getLinkedDrawbackChoice(): DrawbackChoice? = null
 

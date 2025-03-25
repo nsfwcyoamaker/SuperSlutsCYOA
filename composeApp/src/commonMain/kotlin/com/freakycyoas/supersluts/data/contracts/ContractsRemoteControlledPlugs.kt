@@ -13,7 +13,7 @@ import superslutscyoa.composeapp.generated.resources.contracts_REMOTE_CONTROLLED
 
 @Immutable
 @Stable
-object ContractsRemoteControlledPlugs: MainChoice by com.freakycyoas.supersluts.data.contracts.ContractChoice(
+object ContractsRemoteControlledPlugs: MainChoice by ContractChoice(
     image = Res.drawable.contracts_REMOTE_CONTROLLED_PLUGS,
     name = "REMOTE CONTROLLED PLUGS",
     text = buildAnnotatedString {

@@ -7,25 +7,25 @@ import com.freakycyoas.supersluts.model.MainChoice
 
 object GenitalsChoicesGroup: ChoicesGroup {
     override val choices: List<MainChoice> = listOf(
-        com.freakycyoas.supersluts.data.genitals.GenitalsVagina,
-        com.freakycyoas.supersluts.data.genitals.GenitalsSmallPenis,
-        com.freakycyoas.supersluts.data.genitals.GenitalsMediumPenis,
-        com.freakycyoas.supersluts.data.genitals.GenitalsLargePenis,
-        com.freakycyoas.supersluts.data.genitals.GenitalsBigPenis,
-        com.freakycyoas.supersluts.data.genitals.GenitalsSuperPenis
+        GenitalsVagina,
+        GenitalsSmallPenis,
+        GenitalsMediumPenis,
+        GenitalsLargePenis,
+        GenitalsBigPenis,
+        GenitalsSuperPenis
     )
 
     override fun onChoiceSelected(choice: Choice, allSelectedChoices: List<Choice>): List<Choice> {
-        require(choice in com.freakycyoas.supersluts.data.genitals.GenitalsChoicesGroup.choices.withDrawbacks)
+        require(choice in choices.withDrawbacks)
 
         return when (choice) {
-            is com.freakycyoas.supersluts.data.genitals.GenitalsVagina -> {
-                if(allSelectedChoices.contains(com.freakycyoas.supersluts.data.genitals.GenitalsVagina)) {
-                    allSelectedChoices.minus(com.freakycyoas.supersluts.data.genitals.GenitalsVagina)
+            is GenitalsVagina -> {
+                if(allSelectedChoices.contains(GenitalsVagina)) {
+                    allSelectedChoices.minus(GenitalsVagina)
                 } else {
                     allSelectedChoices
-                        .filterNot { it in com.freakycyoas.supersluts.data.genitals.GenitalsChoicesGroup.choices && it is MainChoice }
-                        .plus(com.freakycyoas.supersluts.data.genitals.GenitalsVagina)
+                        .filterNot { it in choices && it is MainChoice }
+                        .plus(GenitalsVagina)
                 }
             }
             is MainChoice /*(choice is a penis type)*/ -> {
@@ -43,24 +43,24 @@ object GenitalsChoicesGroup: ChoicesGroup {
                             add penis
                          */
 
-                    val hasPenisVagina = allSelectedChoices.contains(com.freakycyoas.supersluts.data.genitals.GenitalsPenisVagina)
+                    val hasPenisVagina = allSelectedChoices.contains(GenitalsPenisVagina)
 
                     allSelectedChoices
                         //if penis vagina false -> remove vagina
-                        .let { if(!hasPenisVagina) { it.minus(com.freakycyoas.supersluts.data.genitals.GenitalsVagina) } else it }
+                        .let { if(!hasPenisVagina) { it.minus(GenitalsVagina) } else it }
                         //remove other penis
                         .removePenises()
                         //add penis
                         .plus(choice)
                 }
             }
-            is com.freakycyoas.supersluts.data.genitals.GenitalsPenisVagina -> {
-                if(allSelectedChoices.contains(com.freakycyoas.supersluts.data.genitals.GenitalsPenisVagina)) {
+            is GenitalsPenisVagina -> {
+                if(allSelectedChoices.contains(GenitalsPenisVagina)) {
                     allSelectedChoices
                         .removePenises()
-                        .minus(com.freakycyoas.supersluts.data.genitals.GenitalsPenisVagina)
+                        .minus(GenitalsPenisVagina)
                 } else {
-                    allSelectedChoices.plus(com.freakycyoas.supersluts.data.genitals.GenitalsPenisVagina)
+                    allSelectedChoices.plus(GenitalsPenisVagina)
                 }
             }
             else /*(choice is a simple drawback)*/ -> {
@@ -73,5 +73,5 @@ object GenitalsChoicesGroup: ChoicesGroup {
         }
     }
 
-    private fun List<Choice>.removePenises(): List<Choice> = this.filterNot { it in com.freakycyoas.supersluts.data.genitals.GenitalsChoicesGroup.choices && it is MainChoice && it !is com.freakycyoas.supersluts.data.genitals.GenitalsVagina }
+    private fun List<Choice>.removePenises(): List<Choice> = this.filterNot { it in choices && it is MainChoice && it !is GenitalsVagina }
 }

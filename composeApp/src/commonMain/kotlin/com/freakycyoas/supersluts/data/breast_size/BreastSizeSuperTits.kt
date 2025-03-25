@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.breast_size_SUPER_TITS
 object BreastSizeSuperTits: MainChoice by SimpleMainChoice(
     image = Res.drawable.breast_size_SUPER_TITS,
     name = "SUPER TITS",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeInvertedNipples },
+    linkedDrawbackChoice = { BreastSizeInvertedNipples },
     text = AnnotatedString("You’ll have the breastest breasts! Your bountiful chest is guaranteed to give you lots of news coverage and adoring fans!"),
     powerPoints = 8.pp,
 )

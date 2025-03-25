@@ -26,7 +26,7 @@ object SponsorXoxo: MainChoice by SimpleMainChoice(
     override val priority: Int = 0
 
     override fun modifyGrantedGoldPoints(allSelectedChoices: List<Choice>, choice: Choice, choiceGoldPoints: GoldPoints): GoldPoints {
-        if(choice !in com.freakycyoas.supersluts.data.contracts.ContractsChoicesGroup.choices) return choiceGoldPoints
+        if(choice !in ContractsChoicesGroup.choices) return choiceGoldPoints
         return (choiceGoldPoints.amount + 1).gp
     }
 

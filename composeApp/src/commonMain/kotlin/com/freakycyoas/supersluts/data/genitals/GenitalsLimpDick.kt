@@ -17,5 +17,5 @@ object GenitalsLimpDick: DrawbackChoice by SimpleDrawbackChoice(
     text = AnnotatedString("Your dick is completely limp, it cannot get erect. Beyond that, your penis works perfectly fine."),
     givenPowerPoints = 20.pp,
     linkedMainChoice = { GenitalsMediumPenis },
-    incompatibleWith = { listOf(GenitalsVagina, com.freakycyoas.supersluts.data.genitals.GenitalsAlwaysHard) }
+    incompatibleWith = { listOf(GenitalsVagina, GenitalsAlwaysHard) }
 )

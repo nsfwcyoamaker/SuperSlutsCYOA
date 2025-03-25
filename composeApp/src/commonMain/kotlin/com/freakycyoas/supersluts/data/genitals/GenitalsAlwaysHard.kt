@@ -16,6 +16,6 @@ object GenitalsAlwaysHard: DrawbackChoice by SimpleDrawbackChoice(
     name = "ALWAYS HARD",
     text = AnnotatedString("Your cock (and/or clitoris) is perpetually erect. Whenever you get horny your erection will turn into a throbbing erection."),
     givenPowerPoints = 9.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.genitals.GenitalsLargePenis },
-    incompatibleWith = { listOf(com.freakycyoas.supersluts.data.genitals.GenitalsLimpDick) }
+    linkedMainChoice = { GenitalsLargePenis },
+    incompatibleWith = { listOf(GenitalsLimpDick) }
 )

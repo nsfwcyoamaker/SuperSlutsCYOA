@@ -16,5 +16,5 @@ object BodyFigureCrossdresser: DrawbackChoice by SimpleDrawbackChoice(
     name = "CROSSDRESSER",
     text = AnnotatedString("Whenever you wear clothes designed for your gender you will feel super uncomfortable. You will only want to wear the opposite gender’s clothes."),
     givenPowerPoints = 10.pp,
-    linkedMainChoice = { BodyFigureAndrogenous },
+    linkedMainChoice = { BodyFigureAndrogynous },
 )

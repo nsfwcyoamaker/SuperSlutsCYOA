@@ -23,4 +23,5 @@ object PowersPermanentInvisibility: DrawbackChoice by LeveledDrawbackChoice(
     },
     givenPowerPoints = 10.pp,
     linkedMainChoice = { PowersInvisibility::class },
+    requires = { listOf(PowersInvisibility()) }
 )

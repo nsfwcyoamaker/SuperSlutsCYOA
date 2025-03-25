@@ -16,7 +16,7 @@ object GenitalsBigPenis: MainChoice by SimpleMainChoice(
     name = "BIG PENIS",
     text = AnnotatedString("Or perhaps you want a bigger penis? Like really big! It will make a huge bulge in your pants and it will be next to impossible to hide, even while it’s flaccid. But that’s part of the charm, right?"),
     powerPoints = 3.pp,
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.genitals.GenitalsFuckablePeehole },
+    linkedDrawbackChoice = { GenitalsFuckablePeehole },
 )
 
 

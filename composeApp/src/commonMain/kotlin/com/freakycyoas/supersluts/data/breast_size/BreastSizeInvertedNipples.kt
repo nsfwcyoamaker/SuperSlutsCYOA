@@ -16,6 +16,6 @@ object BreastSizeInvertedNipples: DrawbackChoice by SimpleDrawbackChoice(
     name = "INVERTED NIPPLES",
     text = AnnotatedString("Whenever your nipples are not erect their inverted, hidden inside your big fat tiddies!"),
     givenPowerPoints = 7.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeSuperTits },
-    incompatibleWith = { listOf(com.freakycyoas.supersluts.data.breast_size.BreastSizeFlat) }
+    linkedMainChoice = { BreastSizeSuperTits },
+    incompatibleWith = { listOf(BreastSizeFlat) }
 )

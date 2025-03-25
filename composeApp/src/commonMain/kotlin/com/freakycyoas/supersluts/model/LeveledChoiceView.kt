@@ -9,5 +9,5 @@ data class LeveledChoiceView(
     @Stable
     val mainChoice: LeveledChoiceState,
     @Stable
-    val drawback: com.freakycyoas.supersluts.model.ChoiceState?,
+    val drawback: ChoiceState?,
 )

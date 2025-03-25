@@ -13,7 +13,7 @@ import superslutscyoa.composeapp.generated.resources.powers_POWERFUL_ORGASMS
 @Stable
 object PowersPowerfulOrgasms: DrawbackChoice by LeveledDrawbackChoice(
     image = Res.drawable.powers_POWERFUL_ORGASMS,
-    name = "POWERFUL_ORGASMS",
+    name = "POWERFUL ORGASMS",
     text = AnnotatedString("Your orgasms will be next-level orgasms. Like when you cum, you will cum really fucking hard. We are talking about knee shattering orgasms here and they will also last for several minutes."),
     givenPowerPoints = 10.pp,
     linkedMainChoice = { PowersPowerMode::class },

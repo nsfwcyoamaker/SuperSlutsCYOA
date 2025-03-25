@@ -12,7 +12,7 @@ import superslutscyoa.composeapp.generated.resources.contracts_MILKING
 
 @Immutable
 @Stable
-object ContractsMilking: MainChoice by com.freakycyoas.supersluts.data.contracts.ContractChoice(
+object ContractsMilking: MainChoice by ContractChoice(
     image = Res.drawable.contracts_MILKING,
     name = "MILKING",
     text = AnnotatedString("A nurse with some milking equipment will come to visit you each day to extract sexual fluids from you, which will be up for sale. Tons of fans will buy your sexual fluids, some fans like to collect sexual fluids while others like to drink them. The more fanatical fans might even inseminate themselves with cum in the hopes of getting pregnant."),

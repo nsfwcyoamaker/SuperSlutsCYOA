@@ -16,5 +16,5 @@ object GenitalsFuckablePeehole: DrawbackChoice by SimpleDrawbackChoice(
     name = "FUCKABLE PEEHOLE",
     text = AnnotatedString("Your urethra is now elastic and fuckable. It’s quite a tight fit and will feel amazing to fuck! Are you ready to get your peehole violated?"),
     givenPowerPoints = 7.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.genitals.GenitalsBigPenis },
+    linkedMainChoice = { GenitalsBigPenis },
 )

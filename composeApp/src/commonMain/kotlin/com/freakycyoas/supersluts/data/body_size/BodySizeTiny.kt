@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.body_size_TINY
 object BodySizeTiny: MainChoice by SimpleMainChoice(
     image = Res.drawable.body_size_TINY,
     name = "TINY",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.body_size.BodySizeSubmissive },
+    linkedDrawbackChoice = { BodySizeSubmissive },
     text = AnnotatedString("It would be really adorable if you were super tiny like a fairy. It might be a bit hard to fight crime being the size of a doll, but it definitely would look cute as fuck!"),
     powerPoints = 10.pp,
 )

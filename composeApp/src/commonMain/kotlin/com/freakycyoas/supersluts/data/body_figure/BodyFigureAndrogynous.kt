@@ -11,9 +11,9 @@ import superslutscyoa.composeapp.generated.resources.body_figure_ANDROGENOUS
 
 @Immutable
 @Stable
-object BodyFigureAndrogenous: MainChoice by SimpleMainChoice(
+object BodyFigureAndrogynous: MainChoice by SimpleMainChoice(
     image = Res.drawable.body_figure_ANDROGENOUS,
-    name = "ANDROGENOUS",
+    name = "ANDROGYNOUS",
     text = AnnotatedString("Wanna look feminine and masculine at the same time? People will have a hard time discerning your true gender."),
     powerPoints = 3.pp,
     linkedDrawbackChoice = { BodyFigureCrossdresser },

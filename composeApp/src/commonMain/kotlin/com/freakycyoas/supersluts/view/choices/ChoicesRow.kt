@@ -56,15 +56,13 @@ fun SimpleChoicesRow(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Row(
-            modifier = Modifier.height(IntrinsicSize.Max),
-            horizontalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            row.map { it.mainChoice }.forEach { choiceState ->
-                MainChoiceItem(choiceState, (choiceState.choice as MainChoice).getLinkedDrawbackChoice() != null, { onChoiceSelected(choiceState.choice) }, choiceWidth, modifier = Modifier.fillMaxHeight())
-            }
-        }
+        MainChoicesRow(
+            row = row,
+            onChoiceSelected = onChoiceSelected,
+            choiceWidth = choiceWidth,
+            itemSpacing = itemSpacing,
+            modifier = modifier
+        )
         Row(
             modifier = Modifier.height(IntrinsicSize.Max),
             horizontalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.CenterHorizontally),
@@ -77,6 +75,25 @@ fun SimpleChoicesRow(
                     Box(modifier = Modifier.requiredWidth(choiceWidth).fillMaxHeight())
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun MainChoicesRow(
+    row: List<ChoiceView>,
+    onChoiceSelected: (Choice) -> Unit,
+    choiceWidth: Dp = choiceRowItemWidth,
+    itemSpacing: Dp = choiceRowSpacingWidth,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier.height(IntrinsicSize.Max),
+        horizontalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        row.map { it.mainChoice }.forEach { choiceState ->
+            MainChoiceItem(choiceState, (choiceState.choice as MainChoice).getLinkedDrawbackChoice() != null, { onChoiceSelected(choiceState.choice) }, choiceWidth, modifier = Modifier.fillMaxHeight())
         }
     }
 }
@@ -170,24 +187,8 @@ private fun DrawbackChoiceItem(
             }
     ) {
         Column(modifier = Modifier.requiredWidth(width).weight(1f).background(color = GrayBoxBackgroundColor)) {
-            Column(
-                modifier = Modifier.padding(choiceTextPadding)
-            ) {
-                Text(
-                    buildAnnotatedString {
-                        withStyle(choiceTitleParagraphStyle) {
-                            withStyle(choiceTitleSpanStyle) {
-                                append(choiceState.choice.name)
-                            }
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    choiceState.choice.description,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+            DrawbackDescription(choiceState)
+
             Box(modifier = Modifier.weight(1f))
 
             Image(
@@ -199,6 +200,70 @@ private fun DrawbackChoiceItem(
                     .aspectRatio(1f, false),
             )
         }
+    }
+}
+
+@Composable
+private fun DrawbackDescription(
+    choiceState: ChoiceState,
+) {
+    Column(
+        modifier = Modifier.padding(choiceTextPadding)
+    ) {
+        Text(
+            buildAnnotatedString {
+                withStyle(choiceTitleParagraphStyle) {
+                    withStyle(choiceTitleSpanStyle) {
+                        append(choiceState.choice.name)
+                    }
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            choiceState.choice.description,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+private fun CompositeMainChoiceBody(
+    choice: MainChoice,
+    width: Dp,
+) {
+    Image(
+        painter = painterResource(choice.image),
+        contentDescription = null,
+        contentScale = ContentScale.FillBounds,
+        modifier = Modifier
+            .requiredWidth(width)
+            .aspectRatio(1f, false)
+            .background(Color.Black),
+    )
+    Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor))
+    Column(
+        modifier = Modifier
+            .requiredWidth(width)
+            .background(color = BlackBoxBackgroundColor)
+            .padding(choiceTextPadding)
+    ) {
+        Text(
+            buildAnnotatedString {
+                withStyle(choiceTitleParagraphStyle) {
+                    withStyle(choiceTitleSpanStyle) {
+                        append(choice.name)
+                    }
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            choice.description,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Box(modifier = Modifier.height(8.dp))
     }
 }
 
@@ -215,15 +280,13 @@ fun SpannableDrawbacksChoicesRow(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Row(
-            modifier = Modifier.height(IntrinsicSize.Max),
-            horizontalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            row.map { it.mainChoice }.forEach { choiceState ->
-                MainChoiceItem(choiceState, (choiceState.choice as MainChoice).getLinkedDrawbackChoice() != null, { onChoiceSelected(choiceState.choice) }, choiceWidth, modifier = Modifier.fillMaxHeight())
-            }
-        }
+        MainChoicesRow(
+            row = row,
+            onChoiceSelected = onChoiceSelected,
+            choiceWidth = choiceWidth,
+            itemSpacing = itemSpacing,
+            modifier = modifier
+        )
         Row(
             modifier = Modifier.height(IntrinsicSize.Max),
             horizontalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.CenterHorizontally),
@@ -275,24 +338,7 @@ fun SpannedDrawbackChoiceItem(
             modifier = Modifier.requiredWidth(totalWidth).weight(1f).background(color = GrayBoxBackgroundColor),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = Modifier.padding(choiceTextPadding)
-            ) {
-                Text(
-                    buildAnnotatedString {
-                        withStyle(choiceTitleParagraphStyle) {
-                            withStyle(choiceTitleSpanStyle) {
-                                append(choiceState.choice.name)
-                            }
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    choiceState.choice.description,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+            DrawbackDescription(choiceState)
             Box(modifier = Modifier.weight(1f))
             Image(
                 painter = painterResource(choiceState.choice.image),
@@ -541,39 +587,10 @@ fun MultibuyMainChoiceItem(
                     }
                 }
         ) {
-            Image(
-                painter = painterResource(choiceState.choice.image),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .requiredWidth(width)
-                    .aspectRatio(1f, false)
-                    .background(Color.Black),
+            CompositeMainChoiceBody(
+                choice = choiceState.choice,
+                width = width,
             )
-            Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor))
-            Column(
-                modifier = Modifier
-                    .requiredWidth(width)
-                    .background(color = BlackBoxBackgroundColor)
-                    .padding(choiceTextPadding)
-            ) {
-                Text(
-                    buildAnnotatedString {
-                        withStyle(choiceTitleParagraphStyle) {
-                            withStyle(choiceTitleSpanStyle) {
-                                append(choiceState.choice.name)
-                            }
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    choiceState.choice.description,
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Box(modifier = Modifier.height(8.dp))
-            }
         }
 
         Column(
@@ -678,7 +695,7 @@ fun MultiselectDropdownBox(
                 .background(color = BlackBoxBackgroundColor)
                 .padding(vertical = 2.dp)
                 .padding(start = 4.dp, end = 8.dp)
-                .menuAnchor()
+                .menuAnchor(type = MenuAnchorType.PrimaryNotEditable, enabled = possibleSelections.isNotEmpty())
         ) {
             Text(
                 buildAnnotatedString {
@@ -749,39 +766,10 @@ fun MultiselectMainChoiceItem(
                     }
                 }
         ) {
-            Image(
-                painter = painterResource(choiceState.choice.image),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .requiredWidth(width)
-                    .aspectRatio(1f, false)
-                    .background(Color.Black),
+            CompositeMainChoiceBody(
+                choice = choiceState.choice,
+                width = width,
             )
-            Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
-            Column(
-                modifier = Modifier
-                    .requiredWidth(width)
-                    .background(color = BlackBoxBackgroundColor)
-                    .padding(choiceTextPadding)
-            ) {
-                Text(
-                    buildAnnotatedString {
-                        withStyle(choiceTitleParagraphStyle) {
-                            withStyle(choiceTitleSpanStyle) {
-                                append(choiceState.choice.name)
-                            }
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    choiceState.choice.description,
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Box(modifier = Modifier.height(8.dp))
-            }
         }
 
         Column(
@@ -890,37 +878,10 @@ private fun PointTransferMainChoiceItem(
                     }
                 }
         ) {
-            Image(
-                painter = painterResource(choiceState.choice.image),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .requiredWidth(width)
-                    .aspectRatio(1f, false)
-                    .background(Color.Black),
+            CompositeMainChoiceBody(
+                choice = choiceState.choice,
+                width = width,
             )
-            Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
-            Column(
-                modifier = Modifier
-                    .requiredWidth(width)
-                    .background(color = BlackBoxBackgroundColor)
-                    .padding(choiceTextPadding)
-            ) {
-                Text(
-                    buildAnnotatedString {
-                        withStyle(choiceTitleParagraphStyle) {
-                            withStyle(choiceTitleSpanStyle) {
-                                append(choiceState.choice.name)
-                            }
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    choiceState.choice.description,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
         }
 
         PointTransfer(

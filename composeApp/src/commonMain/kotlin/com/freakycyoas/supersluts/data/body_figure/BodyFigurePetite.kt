@@ -7,13 +7,13 @@ import com.freakycyoas.supersluts.data.SimpleMainChoice
 import com.freakycyoas.supersluts.model.MainChoice
 import com.freakycyoas.supersluts.model.pp
 import superslutscyoa.composeapp.generated.resources.Res
-import superslutscyoa.composeapp.generated.resources.body_figure_PETIT
+import superslutscyoa.composeapp.generated.resources.body_figure_PETITE
 
 @Immutable
 @Stable
-object BodyFigurePetit: MainChoice by SimpleMainChoice(
-    image = Res.drawable.body_figure_PETIT,
-    name = "PETIT",
+object BodyFigurePetite: MainChoice by SimpleMainChoice(
+    image = Res.drawable.body_figure_PETITE,
+    name = "PETITE",
     text = AnnotatedString("How about I make you thin, lithe, delicate and dainty? You’ll be the pinnacle of elegance and femininity, a statue of beauty! Your thin frame will make you look vulnerable, yet strong and courageous!"),
     powerPoints = 1.pp,
     linkedDrawbackChoice = { BodyFigureFreckles },

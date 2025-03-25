@@ -11,7 +11,7 @@ import superslutscyoa.composeapp.generated.resources.contracts_AUTOGRAPHS
 
 @Immutable
 @Stable
-object ContractsAutographs: MainChoice by com.freakycyoas.supersluts.data.contracts.ContractChoice(
+object ContractsAutographs: MainChoice by ContractChoice(
     image = Res.drawable.contracts_AUTOGRAPHS,
     name = "AUTOGRAPHS",
     text = AnnotatedString("Fans love to get autographs and you will be under contract to sign whatever your fans wants signed. It doesn’t matter if it’s a used dildo, their penis or a pair of tits, you will write your name on it! You better start practicing on your handwriting, because you will be writing a lot of autographs."),

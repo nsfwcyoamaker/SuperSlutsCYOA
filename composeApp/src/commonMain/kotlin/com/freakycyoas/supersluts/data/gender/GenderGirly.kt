@@ -16,5 +16,5 @@ object GenderGirly: DrawbackChoice by SimpleDrawbackChoice(
     name = "GIRLY",
     text = AnnotatedString("Your subconscious mind will be altered to make your body language and the way you speak super feminine. You'll act like a stereotypical girl and you will also start to like girly things, like makeup and pretty dresses."),
     givenPowerPoints = 8.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.gender.GenderFemale },
+    linkedMainChoice = { GenderFemale },
 )

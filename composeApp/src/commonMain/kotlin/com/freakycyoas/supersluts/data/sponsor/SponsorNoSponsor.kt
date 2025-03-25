@@ -23,7 +23,7 @@ object SponsorNoSponsor: MainChoice by SimpleMainChoice(
     override val priority: Int = 0
 
     override fun modifyGrantedFatePoints(allSelectedChoices: List<Choice>, choice: Choice, choiceFatePoints: FatePoints): FatePoints {
-        if(choice !in com.freakycyoas.supersluts.data.fate.FateChoicesGroup.choices) return choiceFatePoints
+        if(choice !in FateChoicesGroup.choices) return choiceFatePoints
         return (choiceFatePoints.amount + 3).fp
     }
 }

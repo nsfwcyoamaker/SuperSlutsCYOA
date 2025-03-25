@@ -16,6 +16,6 @@ object BreastSizeLactation: DrawbackChoice by SimpleDrawbackChoice(
     name = "LACTATION",
     text = AnnotatedString("You’ll need to milk your breasts on a daily basis or your tits are going to swell and feel sore."),
     givenPowerPoints = 10.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeBigTits },
-    incompatibleWith = { listOf(com.freakycyoas.supersluts.data.breast_size.BreastSizeFlat) },
+    linkedMainChoice = { BreastSizeBigTits },
+    incompatibleWith = { listOf(BreastSizeFlat) },
 )

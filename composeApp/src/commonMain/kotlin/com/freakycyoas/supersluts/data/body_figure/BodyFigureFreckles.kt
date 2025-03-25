@@ -16,5 +16,5 @@ object BodyFigureFreckles: DrawbackChoice by SimpleDrawbackChoice(
     name = "FRECKLES",
     text = AnnotatedString("You have cute little freckles decorating your face and body! With all those spots you’re almost like a human jaguar, rawr!"),
     givenPowerPoints = 3.pp,
-    linkedMainChoice = { BodyFigurePetit },
+    linkedMainChoice = { BodyFigurePetite },
 )

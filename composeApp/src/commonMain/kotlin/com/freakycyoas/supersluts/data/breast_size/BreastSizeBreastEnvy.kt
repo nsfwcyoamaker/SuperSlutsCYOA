@@ -17,13 +17,13 @@ object BreastSizeBreastEnvy: DrawbackChoice by MultipleSpanDrawbackChoice(
     text = AnnotatedString("You’re going to be super jealous of girls with bigger boobs than you. Watching their bigger bouncier tits jiggle in front of you will make you angry, envious and extremely insecure about your own tits. The bigger the tits are the bigger your reaction will be."),
     givenPowerPoints = 10.pp,
     requires = { listOf(
-        com.freakycyoas.supersluts.data.breast_size.BreastSizeFlat,
-        com.freakycyoas.supersluts.data.breast_size.BreastSizeSmallTits,
-        com.freakycyoas.supersluts.data.breast_size.BreastSizeMediumTits
+        BreastSizeFlat,
+        BreastSizeSmallTits,
+        BreastSizeMediumTits
     ) },
     requiresAll = false,
     linkedMainChoices = { listOf(
-        com.freakycyoas.supersluts.data.breast_size.BreastSizeFlat,
-        com.freakycyoas.supersluts.data.breast_size.BreastSizeSmallTits
+        BreastSizeFlat,
+        BreastSizeSmallTits
     ) }
 )

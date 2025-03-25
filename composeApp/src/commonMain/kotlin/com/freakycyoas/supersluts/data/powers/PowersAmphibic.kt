@@ -15,21 +15,21 @@ import superslutscyoa.composeapp.generated.resources.powers_AMPHIBIC
 
 @Immutable
 @Stable
-class PowersAmphibic(selectedLevel: Int? = null): LeveledMainChoice by com.freakycyoas.supersluts.data.DefaultLeveledMainChoice(
+class PowersAmphibic(selectedLevel: Int? = null): LeveledMainChoice by DefaultLeveledMainChoice(
     image = Res.drawable.powers_AMPHIBIC,
     name = "AMPHIBIC",
     levels = listOf(
-        com.freakycyoas.supersluts.data.PowerLevel(
+        PowerLevel(
             1,
             (-5).pp,
             AnnotatedString("Your body is comfortable in water of any temperature. You can also hold your breath for 30 minutes and you can swim twice as fast.")
         ),
-        com.freakycyoas.supersluts.data.PowerLevel(
+        PowerLevel(
             2,
             (-15).pp,
             AnnotatedString("You’re able to breathe underwater and you’re able to swim faster than any sea creature. You can also fight just as effectively underwater as you can on land.")
         ),
-        com.freakycyoas.supersluts.data.PowerLevel(3, (-25).pp,
+        PowerLevel(3, (-25).pp,
             buildAnnotatedString {
                 append("You gain 1 extra level of ")
                 withStyle(choiceSubtitleSpanStyle) { append("Superhuman Strenght") }

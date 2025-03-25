@@ -7,7 +7,7 @@ import androidx.compose.runtime.Stable
 @Stable
 data class ChoiceView(
     @Stable
-    val mainChoice: com.freakycyoas.supersluts.model.ChoiceState,
+    val mainChoice: ChoiceState,
     @Stable
-    val drawback: com.freakycyoas.supersluts.model.ChoiceState? = null,
+    val drawback: ChoiceState? = null,
 )

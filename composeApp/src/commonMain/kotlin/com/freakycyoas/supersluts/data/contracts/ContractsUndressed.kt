@@ -12,7 +12,7 @@ import superslutscyoa.composeapp.generated.resources.contracts_UNDRESSED
 
 @Immutable
 @Stable
-object ContractsUndressed: MainChoice by com.freakycyoas.supersluts.data.contracts.ContractChoice(
+object ContractsUndressed: MainChoice by ContractChoice(
     image = Res.drawable.contracts_UNDRESSED,
     name = "UNDRESSED",
     text = AnnotatedString("Undressed is a softcore porn magazine that specializes in superheroes. You will be featured several times per year in their magazine. Prepare yourself for nude photoshoots and interviews involving truth serums. You will get asked questions like what is your favorite sex position and what is the kinkiest thing you have ever done."),

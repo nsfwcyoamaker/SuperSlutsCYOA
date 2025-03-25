@@ -15,11 +15,11 @@ import superslutscyoa.composeapp.generated.resources.powers_CLONE
 
 @Immutable
 @Stable
-class PowersClone(selectedLevel: Int? = null): LeveledMainChoice by com.freakycyoas.supersluts.data.DefaultLeveledMainChoice(
+class PowersClone(selectedLevel: Int? = null): LeveledMainChoice by DefaultLeveledMainChoice(
     image = Res.drawable.powers_CLONE,
     name = "CLONE",
     levels = listOf(
-        com.freakycyoas.supersluts.data.PowerLevel(1, (-10).pp,
+        PowerLevel(1, (-10).pp,
             buildAnnotatedString {
                 append("You can summon and unsummon 1 clone of yourself. The clone will be loyal to you and instinctively know what you want it to do. However, your clone will disintegrate if it gets struck by any attack and feels pain as a result of the attack. The clone will only have access to all of your level 1 powers, except for ")
                 withStyle(choiceSubtitleSpanStyle) { append("Clone") }
@@ -28,14 +28,14 @@ class PowersClone(selectedLevel: Int? = null): LeveledMainChoice by com.freakycy
                 append(".")
             }
         ),
-        com.freakycyoas.supersluts.data.PowerLevel(2, (-40).pp,
+        PowerLevel(2, (-40).pp,
             buildAnnotatedString {
                 append("You can now summon up to 10 clones of yourself and your clones will gain all of your level 2 powers, except for ")
                 withStyle(choiceSubtitleSpanStyle) { append("Clone") }
                 append(".")
             }
         ),
-        com.freakycyoas.supersluts.data.PowerLevel(3, (-80).pp,
+        PowerLevel(3, (-80).pp,
             buildAnnotatedString {
                 append("You can now summon up to 100 clones of yourself. Your clones will have access to all of your powers, except ")
                 withStyle(choiceSubtitleSpanStyle) { append("Clone") }

@@ -7,7 +7,7 @@ import com.freakycyoas.supersluts.model.LeveledChoicesGroup
 
 @Stable
 @Immutable
-object PowersChoicesGroup: LeveledChoicesGroup by com.freakycyoas.supersluts.data.DefaultLeveledChoicesGroup(
+object PowersChoicesGroup: LeveledChoicesGroup by DefaultLeveledChoicesGroup(
     listOf(
         PowersSuperhumanStrength(),
         PowersSuperhumanDurability(),

@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.breast_size_BIG_TITS
 object BreastSizeBigTits: MainChoice by SimpleMainChoice(
     image = Res.drawable.breast_size_BIG_TITS,
     name = "BIG TITS",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeLactation },
+    linkedDrawbackChoice = { BreastSizeLactation },
     text = AnnotatedString("Now we are talking, tits this big is really jiggly, bouncy and squishy, perfect for a superheroine!"),
     powerPoints = 2.pp,
 )

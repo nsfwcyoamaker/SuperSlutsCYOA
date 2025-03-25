@@ -21,7 +21,7 @@ class PowersAbsorbPower(selectedLevel: Int? = null): LeveledMainChoice by Defaul
         PowerLevel(2, (-60).pp, AnnotatedString("You can now absorb up to 2 powers instead of only 1. The 2 powers you absorb don't have to come from the same person. You can also keep absorbed powers for up to 1 hour.")),
         PowerLevel(3, (-80).pp, AnnotatedString("When you absorb someone’s power you can choose if you want to drain their power from them. Draining their power will make them lose their power for as long as you have access to it. You also be able to keep absorbed powers for up to 24 hours.")),
     ),
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.powers.PowersPowerSlut },
+    linkedDrawbackChoice = { PowersPowerSlut },
     selectedLevel = selectedLevel,
     constructor = ::PowersAbsorbPower,
     incompatibleWith = { listOf(PowerSourceMartialArts) }

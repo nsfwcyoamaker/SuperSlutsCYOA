@@ -16,5 +16,5 @@ object BreastSizeErogenousNipples: DrawbackChoice by SimpleDrawbackChoice(
     name = "EROGENOUS NIPPLES",
     text = AnnotatedString("Your nipples are now really sensitive and an erogenous zone. Continuous stimulation will make you climax. I recommend wearing pasties over your nipples to keep your nipples from rubbing against your bra."),
     givenPowerPoints = 10.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeMediumTits }
+    linkedMainChoice = { BreastSizeMediumTits }
 )

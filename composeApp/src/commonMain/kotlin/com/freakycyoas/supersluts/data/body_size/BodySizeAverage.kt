@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.body_size_AVERAGE
 object BodySizeAverage: MainChoice by SimpleMainChoice(
     image = Res.drawable.body_size_AVERAGE,
     name = "AVERAGE",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.body_size.BodySizeSwitch },
+    linkedDrawbackChoice = { BodySizeSwitch },
     text = AnnotatedString("Really? You want to be average-sized for your gender? That’s soooo boring! But I guess it would be easier to keep your identity hidden if you didn’t have some crazy height that made you stand out."),
     powerPoints = 0.pp,
 )

@@ -24,5 +24,5 @@ object GenderFemale: MainChoice by SimpleMainChoice(
         append(".")
     },
     powerPoints = 20.pp,
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.gender.GenderGirly },
+    linkedDrawbackChoice = { GenderGirly },
 )

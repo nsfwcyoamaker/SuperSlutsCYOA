@@ -16,5 +16,5 @@ object GenderChivalrous: DrawbackChoice by SimpleDrawbackChoice(
     name = "CHIVALROUS",
     text = AnnotatedString("Your subconscious mind will be altered to make you act like a perfect gentleman. You will be gallant, courteous and polite. Acting dishonorably, especially towards women becomes unthinkable to you."),
     givenPowerPoints = 10.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.gender.GenderMale },
+    linkedMainChoice = { GenderMale },
 )

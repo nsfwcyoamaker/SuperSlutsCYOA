@@ -17,7 +17,5 @@ object JobProstitute: MainChoice by SimpleMainChoice(
     name = "PROSTITUTE",
     text = AnnotatedString("You will sell your body on the streets. While prostitution is legal and the pay is very good, people will ostracize you for it, you will be treated like a dirty whore. They will gladly fuck you, but no one will want to date you. You can pretty much forget about ever having a serious relationship or getting married."),
     goldPoints = 15.gp,
-    incompatibleWith = { listOf(SponsorWaltDisney, SponsorBlissIndustries, SponsorDawnGenetics, SponsorXoxo,
-        com.freakycyoas.supersluts.data.contracts.ContractsDateLottery
-    ) },
+    incompatibleWith = { listOf(SponsorWaltDisney, SponsorBlissIndustries, SponsorDawnGenetics, SponsorXoxo, ContractsDateLottery) },
 )

@@ -16,6 +16,6 @@ object BreastSizeFuckableNipples: DrawbackChoice by SimpleDrawbackChoice(
     name = "FUCKABLE NIPPLES",
     text = AnnotatedString("Your nipples are stretchy enough to be fuckable and oh boy it will feel good to fuck them!"),
     givenPowerPoints = 7.pp,
-    linkedMainChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeLargeTits },
-    incompatibleWith = { listOf(com.freakycyoas.supersluts.data.breast_size.BreastSizeFlat) }
+    linkedMainChoice = { BreastSizeLargeTits },
+    incompatibleWith = { listOf(BreastSizeFlat) }
 )

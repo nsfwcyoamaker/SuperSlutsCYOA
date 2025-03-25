@@ -10,7 +10,7 @@ import superslutscyoa.composeapp.generated.resources.contracts_WALKING_BILLBOARD
 
 @Immutable
 @Stable
-object ContractsWalkingBillboard: MainChoice by com.freakycyoas.supersluts.data.contracts.ContractChoice(
+object ContractsWalkingBillboard: MainChoice by ContractChoice(
     image = Res.drawable.contracts_WALKING_BILLBOARD,
     name = "WALKING BILLBOARD",
     text = AnnotatedString("You’re a walking billboard. Anyone can pay for a spot on your superhero outfit where they can place a logo, image or whatever they want. Depending on how your outfit looks like, you might have to get temporary tattoos on your body if there is not enough space on your outfit."),

@@ -14,7 +14,7 @@ import superslutscyoa.composeapp.generated.resources.breast_size_LARGE_TITS
 object BreastSizeLargeTits: MainChoice by SimpleMainChoice(
     image = Res.drawable.breast_size_LARGE_TITS,
     name = "LARGE TITS",
-    linkedDrawbackChoice = { com.freakycyoas.supersluts.data.breast_size.BreastSizeFuckableNipples },
+    linkedDrawbackChoice = { BreastSizeFuckableNipples },
     text = AnnotatedString("You will have really big tits, but you could always go bigger you know. You shouldn’t half-ass tits, like either go super big or go flat."),
     powerPoints = 1.pp,
 )

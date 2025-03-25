@@ -29,6 +29,6 @@ object OutfitFeatureChastityDevice: MainChoice by SimpleMainChoice(
 ) {
     @Stable
     override fun grantedOutfitGoldPoints(allSelectedChoices: List<Choice>): GoldPoints {
-        return if(allSelectedChoices.contains(com.freakycyoas.supersluts.data.contracts.ContractsOrgasmReward)) 0.gp else cost
+        return if(allSelectedChoices.contains(ContractsOrgasmReward)) 0.gp else cost
     }
 }

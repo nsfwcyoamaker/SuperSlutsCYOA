@@ -23,7 +23,7 @@ object SponsorSexySecret: MainChoice by SimpleMainChoice(
         append(".")
     },
     goldPoints = 10.gp,
-    requires = { listOf(com.freakycyoas.supersluts.data.gender.GenderFemale) }
+    requires = { listOf(GenderFemale) }
 ), GoldPointsModifier {
     override val priority: Int = 0
 

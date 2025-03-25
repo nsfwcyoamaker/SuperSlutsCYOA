@@ -13,7 +13,7 @@ import superslutscyoa.composeapp.generated.resources.appearance_otherwordly
 
 @Immutable
 @Stable
-object AppearanceOtherwordly: DrawbackChoice by SimpleDrawbackChoice(
+object AppearanceOtherworldly: DrawbackChoice by SimpleDrawbackChoice(
     image = Res.drawable.appearance_otherwordly,
     name = "OTHERWORLDLY",
     text = buildAnnotatedString {

@@ -31,7 +31,7 @@ object OutfitFeatureNipplePlugs: MainChoice by SimpleMainChoice(
         withStyle(goldPointsStyle) { append("Gold Points") }
         append(" from this option.")
     },
-    requires = { listOf(com.freakycyoas.supersluts.data.breast_size.BreastSizeFuckableNipples) },
+    requires = { listOf(BreastSizeFuckableNipples) },
     incompatibleWith = { listOf(SponsorWaltDisney, SponsorBlissIndustries, SponsorDawnGenetics, SponsorSexySecret) },
     goldPoints = 5.gp
 ) {
