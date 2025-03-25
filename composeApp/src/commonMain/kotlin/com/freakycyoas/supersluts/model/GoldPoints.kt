@@ -6,10 +6,15 @@ import com.freakycyoas.supersluts.theme.goldPointsStyle
 data class GoldPoints(override val amount: Int): Points {
     companion object {
         val style = goldPointsStyle
+
+        val name = "Gold Points"
     }
 
     override val style: SpanStyle
         get() = Companion.style
+
+    override val name: String
+        get() = Companion.name
 
     operator fun plus(other: GoldPoints): GoldPoints {
         return (this.amount + other.amount).gp

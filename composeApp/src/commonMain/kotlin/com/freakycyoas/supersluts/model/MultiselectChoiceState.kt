@@ -9,9 +9,9 @@ data class MultiselectChoiceState(
     @Stable
     val choice: MultiselectMainChoice,
     @Stable
-    val selectedChoices: List<com.freakycyoas.supersluts.model.Choice>,
+    val selectedChoices: List<Choice>,
     @Stable
-    val selectableChoices: List<com.freakycyoas.supersluts.model.Choice>,
+    val selectableChoices: List<Choice>,
     @Stable
     val isEnabled: Boolean,
 )

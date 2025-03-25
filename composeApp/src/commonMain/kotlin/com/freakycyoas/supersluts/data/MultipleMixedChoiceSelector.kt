@@ -7,6 +7,7 @@ class MultipleMixedChoiceSelector(override val choices: List<MainChoice>): Choic
     private val leveled = DefaultLeveledChoicesGroup(choices.filterIsInstance<LeveledMainChoice>())
     private val multibuy = DefaultMultibuyChoicesGroup(choices.filterIsInstance<MultibuyMainChoice>())
     private val multiselect = DefaultMultiselectChoicesGroup(choices.filterIsInstance<MultiselectMainChoice>())
+    private val pointTransfer = DefaultPointTransferChoicesGroup(choices.filterIsInstance<PointTransferMainChoice>())
 
     override fun onChoiceSelected(choice: Choice, allSelectedChoices: List<Choice>): List<Choice> {
         return when {
@@ -18,6 +19,9 @@ class MultipleMixedChoiceSelector(override val choices: List<MainChoice>): Choic
             }
             choice is MultiselectMainChoice -> {
                 multiselect.onChoiceSelected(choice, allSelectedChoices)
+            }
+            choice is PointTransferMainChoice -> {
+                pointTransfer.onChoiceSelected(choice, allSelectedChoices)
             }
             else -> {
                 main.onChoiceSelected(choice, allSelectedChoices)

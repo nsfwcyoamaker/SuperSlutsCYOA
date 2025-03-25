@@ -47,6 +47,10 @@ val FatePointsColor: Color
     @Stable
     get() = Color(0xFF98509F)
 
+val PrisonPointsColor: Color
+    @Stable
+    get() = Color(0xFF22B14C)
+
 val selectedChoiceOverlayColor: Color
     @Stable
     get() = Color(0x90AC2226)

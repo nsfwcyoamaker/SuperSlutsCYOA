@@ -23,6 +23,7 @@ fun MainPage() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+        //TODO scrollbar hovers over content instead of occupying space (use box not row)
         Row(
             modifier = Modifier.weight(1f).fillMaxWidth(),
         ) {

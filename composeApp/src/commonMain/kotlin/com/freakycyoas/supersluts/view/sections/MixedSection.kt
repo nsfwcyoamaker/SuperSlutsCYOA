@@ -33,6 +33,7 @@ class MixedSection(val title: String, val description: AnnotatedString, val grou
                         onMultiselectAddChoice = viewModel::onMultiselectAddChoice,
                         onMultiselectRemoveChoice = viewModel::onMultiselectRemoveChoice,
                         onMultiselectSelectedChoice = viewModel::onMultiselectSelectedChoice,
+                        onPointTransferAmountChanged = viewModel::onPointTransferAmountChanged,
                         choiceWidth = choiceRowItemWidth,
                     )
                 }

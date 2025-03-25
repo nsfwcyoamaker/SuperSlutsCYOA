@@ -5,11 +5,7 @@ import androidx.compose.runtime.Stable
 
 @Immutable
 @Stable
-data class ChoiceState(
+data class PointTransferChoiceView(
     @Stable
-    val choice: Choice,
-    @Stable
-    val isSelected: Boolean,
-    @Stable
-    val isEnabled: Boolean,
+    val mainChoice: PointTransferChoiceState,
 )

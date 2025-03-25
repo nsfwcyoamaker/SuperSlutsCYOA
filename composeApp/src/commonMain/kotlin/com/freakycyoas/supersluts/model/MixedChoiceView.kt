@@ -18,4 +18,7 @@ sealed class MixedChoiceView {
     @Immutable
     @Stable
     data class Multiselect(val multiselectChoiceView: MultiselectChoiceView): MixedChoiceView()
+    @Immutable
+    @Stable
+    data class PointTransfer(val pointTransferChoiceView: PointTransferChoiceView): MixedChoiceView()
 }

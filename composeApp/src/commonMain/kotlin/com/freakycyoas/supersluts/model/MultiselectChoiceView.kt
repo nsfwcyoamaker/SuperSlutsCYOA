@@ -9,5 +9,5 @@ data class MultiselectChoiceView(
     @Stable
     val mainChoice: MultiselectChoiceState,
     @Stable
-    val drawback: com.freakycyoas.supersluts.model.ChoiceState?,
+    val drawback: ChoiceState?,
 )

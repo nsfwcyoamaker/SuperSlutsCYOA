@@ -9,6 +9,27 @@ import org.kodein.di.instance
 class MixedSectionViewModel(val group: ChoicesGroup) {
     private val mainStateViewModel: MainStateViewModel by global.instance()
 
+    private fun PointTransferMainChoice.makePointTransferChoiceView(allChoices: List<Choice>): PointTransferChoiceView {
+        val selectedInstance = allChoices
+            .filterIsInstance<PointTransferMainChoice>()
+            .singleOrNull { it::class == this::class }
+
+        val default = group.choices
+            .filterIsInstance<PointTransferMainChoice>()
+            .single { it::class == this::class }
+
+        return PointTransferChoiceView(
+            mainChoice = PointTransferChoiceState(
+                choice = this,
+                isSelected = selectedInstance != null,
+                isEnabled = this.canBeTaken(allChoices),
+                amount = selectedInstance?.amountTransferred ?: 0,
+                consumedPoints = selectedInstance?.consumedPoints() ?: default.consumedPoints(),
+                gainedPoints = selectedInstance?.grantedPoints() ?: default.grantedPoints(),
+            ),
+        )
+    }
+
     private fun MultiselectMainChoice.makeMultiselectChoiceView(allChoices: List<Choice>): MultiselectChoiceView {
         val selectedInstance = allChoices
             .filterIsInstance<MultiselectMainChoice>()
@@ -107,6 +128,10 @@ class MixedSectionViewModel(val group: ChoicesGroup) {
                         MixedChoiceView.Multiselect(choiceOfGroup.makeMultiselectChoiceView(allChoices))
                     }
 
+                    is PointTransferMainChoice -> {
+                        MixedChoiceView.PointTransfer(choiceOfGroup.makePointTransferChoiceView(allChoices))
+                    }
+
                     else -> {
                         MixedChoiceView.Simple(choiceOfGroup.makeSimpleChoiceView(allChoices))
                     }
@@ -174,6 +199,12 @@ class MixedSectionViewModel(val group: ChoicesGroup) {
                     .toList()
             )
             group.onChoiceSelected(alteredInstance, it)
+        }
+    }
+
+    fun onPointTransferAmountChanged(choice: PointTransferMainChoice, newAmount: Int) {
+        mainStateViewModel.selectedChoices = mainStateViewModel.selectedChoices.let {
+            group.onChoiceSelected(choice.ofAmount(newAmount), it)
         }
     }
 }

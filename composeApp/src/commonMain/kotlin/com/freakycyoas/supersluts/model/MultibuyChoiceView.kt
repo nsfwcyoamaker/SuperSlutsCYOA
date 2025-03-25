@@ -9,5 +9,5 @@ data class MultibuyChoiceView(
     @Stable
     val mainChoice: MultibuyChoiceState,
     @Stable
-    val drawback: com.freakycyoas.supersluts.model.ChoiceState?,
+    val drawback: ChoiceState?,
 )

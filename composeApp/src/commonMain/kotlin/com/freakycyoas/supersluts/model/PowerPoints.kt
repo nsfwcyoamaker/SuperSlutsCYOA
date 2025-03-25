@@ -6,10 +6,15 @@ import com.freakycyoas.supersluts.theme.powerPointsStyle
 data class PowerPoints(override val amount: Int): Points {
     companion object {
         val style = powerPointsStyle
+
+        val name = "Power Points"
     }
 
     override val style: SpanStyle
         get() = Companion.style
+
+    override val name: String
+        get() = Companion.name
 
     operator fun plus(other: PowerPoints): PowerPoints {
         return (this.amount + other.amount).pp

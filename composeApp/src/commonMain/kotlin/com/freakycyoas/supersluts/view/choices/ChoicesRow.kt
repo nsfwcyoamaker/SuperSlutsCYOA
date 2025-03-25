@@ -27,9 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.freakycyoas.supersluts.model.*
 import com.freakycyoas.supersluts.theme.*
 import compose.icons.FeatherIcons
-import compose.icons.feathericons.Minus
-import compose.icons.feathericons.Plus
-import compose.icons.feathericons.Trash2
+import compose.icons.feathericons.*
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -864,14 +862,98 @@ fun MultiselectMainChoiceItem(
 }
 
 @Composable
+private fun PointTransferMainChoiceItem(
+    choiceState: PointTransferChoiceState,
+    onSelected: () -> Unit,
+    onAmountChanged: (Int) -> Unit,
+    width: Dp,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+            .clip(BottomRightCornerCutShape)
+            .background(color = BlackBoxBackgroundColor)
+            .then(
+                if(choiceState.isEnabled) {
+                    Modifier.alpha(1f).clickable(onClick = onSelected)
+                } else {
+                    Modifier.alpha(0.6f)
+                }
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .drawWithContent {
+                    drawContent()
+                    if(choiceState.isSelected) {
+                        drawRect(selectedChoiceOverlayColor)
+                    }
+                }
+        ) {
+            Image(
+                painter = painterResource(choiceState.choice.image),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .requiredWidth(width)
+                    .aspectRatio(1f, false)
+                    .background(Color.Black),
+            )
+            Box(modifier = Modifier.requiredWidth(width).height(4.dp).background(color = RedBoxBackgroundColor)) {}
+            Column(
+                modifier = Modifier
+                    .requiredWidth(width)
+                    .background(color = BlackBoxBackgroundColor)
+                    .padding(choiceTextPadding)
+            ) {
+                Text(
+                    buildAnnotatedString {
+                        withStyle(choiceTitleParagraphStyle) {
+                            withStyle(choiceTitleSpanStyle) {
+                                append(choiceState.choice.name)
+                            }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    choiceState.choice.description,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+
+        PointTransfer(
+            amountTransferred = choiceState.amount,
+            consumedPoints = choiceState.consumedPoints,
+            gainedPoints = choiceState.gainedPoints,
+            enabled = choiceState.isSelected,
+            onAmountChanged = onAmountChanged,
+            modifier = Modifier
+                .requiredWidth(width)
+                .clip(BottomRightCornerCutShape)
+                .drawWithContent {
+                    if(choiceState.isSelected) {
+                        drawContent()
+                    }
+                }
+                .background(color = BlackBoxBackgroundColor),
+        )
+
+        Box(modifier = Modifier.weight(1f))
+    }
+}
+
+@Composable
 fun MixedChoicesRow(
     row: List<MixedChoiceView>,
     onChoiceSelected: (Choice) -> Unit,
     onLevelSelected: (LeveledMainChoice, ChoiceLevel) -> Unit,
-    onMultibuyChangeAmount: (choice: MultibuyMainChoice, newAmount: Int) -> Unit,
+    onMultibuyChangeAmount: (MultibuyMainChoice, newAmount: Int) -> Unit,
     onMultiselectAddChoice: (MultiselectMainChoice) -> Unit,
     onMultiselectRemoveChoice: (MultiselectMainChoice, Choice) -> Unit,
     onMultiselectSelectedChoice: (MultiselectMainChoice, Choice, Choice) -> Unit,
+    onPointTransferAmountChanged: (PointTransferMainChoice, amount: Int) -> Unit,
     choiceWidth: Dp = choiceRowItemWidth,
     itemSpacing: Dp = choiceRowSpacingWidth,
     modifier: Modifier = Modifier,
@@ -933,6 +1015,17 @@ fun MixedChoicesRow(
                             modifier = Modifier.fillMaxHeight()
                         )
                     }
+
+                    is MixedChoiceView.PointTransfer -> {
+                        val choiceState = mixedChoice.pointTransferChoiceView.mainChoice
+                        PointTransferMainChoiceItem(
+                            choiceState = choiceState,
+                            onSelected = { onChoiceSelected(choiceState.choice) },
+                            onAmountChanged = { onPointTransferAmountChanged(choiceState.choice, it) },
+                            width = choiceWidth,
+                            modifier = Modifier.fillMaxHeight()
+                        )
+                    }
                 }
             }
         }
@@ -955,6 +1048,9 @@ fun MixedChoicesRow(
                     is MixedChoiceView.Leveled -> {
                         mixedChoice.leveledChoiceView.drawback
                     }
+                    is MixedChoiceView.PointTransfer -> {
+                        null
+                    }
                 }
 
                 if(choiceState != null) {
@@ -964,5 +1060,74 @@ fun MixedChoicesRow(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun PointTransfer(
+    amountTransferred: Int,
+    consumedPoints: Points,
+    gainedPoints: Points,
+    enabled: Boolean,
+    onAmountChanged: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterHorizontally),
+    ) {
+        Text(
+            buildAnnotatedString {
+                withStyle(choiceTitleSpanStyle) {
+                    withStyle(consumedPoints.style) {
+                        append(consumedPoints.name + ": ")
+                    }
+                }
+            },
+        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Icon(
+                FeatherIcons.ChevronUp,
+                null,
+                tint = Color.White,
+                modifier = Modifier.clickable(
+                    enabled = enabled,
+                    onClick = { onAmountChanged(amountTransferred + 1) },
+                )
+            )
+            Text(
+                buildAnnotatedString {
+                    withStyle(choiceTitleSpanStyle) {
+                        withStyle(consumedPoints.style) {
+                            append("${consumedPoints.amount}")
+                        }
+                    }
+                },
+            )
+            Icon(
+                FeatherIcons.ChevronDown,
+                null,
+                tint = Color.White,
+                modifier = Modifier.clickable(
+                    enabled = enabled && amountTransferred > 0,
+                    onClick = { onAmountChanged(amountTransferred - 1) },
+                )
+            )
+        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Icon(FeatherIcons.ArrowRight, null, tint = Color.White)
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            buildAnnotatedString {
+                withStyle(choiceTitleSpanStyle) {
+                    withStyle(gainedPoints.style) {
+                        append("${gainedPoints.amount} ${gainedPoints.name}")
+                    }
+                }
+            },
+        )
     }
 }

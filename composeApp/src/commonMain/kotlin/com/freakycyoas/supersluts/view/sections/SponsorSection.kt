@@ -1,31 +1,21 @@
 package com.freakycyoas.supersluts.view.sections
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
-import com.freakycyoas.supersluts.model.gp
-import com.freakycyoas.supersluts.model.pp
+import com.freakycyoas.supersluts.data.sponsor.SponsorExchangedPowerPoints
 import com.freakycyoas.supersluts.theme.*
 import com.freakycyoas.supersluts.utils.byRow
 import com.freakycyoas.supersluts.view.MainPageSection
 import com.freakycyoas.supersluts.view.choices.ChoicesRow
+import com.freakycyoas.supersluts.view.choices.PointTransfer
 import com.freakycyoas.supersluts.view.choices.SimpleChoicesRow
 import com.freakycyoas.supersluts.viewmodel.SponsorSectionViewModel
 
@@ -33,7 +23,7 @@ object SponsorSection: MainPageSection {
     @Composable
     override fun getItems(): List<@Composable () -> Unit> {
         val viewModel = remember { SponsorSectionViewModel() }
-        val exchangedPoints by viewModel.exchangedPowerPoints.collectAsState(0.pp to 0.gp)
+        val exchangedPoints by viewModel.sponsorExchangedPowerPoints.collectAsState(SponsorExchangedPowerPoints(0))
         val choices by viewModel.choicesView.collectAsState(emptyList())
 
         val header: @Composable () -> Unit = @Composable {
@@ -57,60 +47,17 @@ object SponsorSection: MainPageSection {
 
         val pointConversion: @Composable () -> Unit = @Composable {
             ChoicesRow {
-                Row(
+                PointTransfer(
+                    amountTransferred = exchangedPoints.amount,
+                    consumedPoints = exchangedPoints.consumedPoints(),
+                    gainedPoints = exchangedPoints.gainedPoints(),
+                    enabled = true,
+                    onAmountChanged = viewModel::powerPointsExchangeAmountChanged,
                     modifier = Modifier
                         .clip(BottomRightCornerCutShape)
                         .background(color = BlackBoxBackgroundColor)
                         .padding(choiceTextPadding),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        buildAnnotatedString {
-                            withStyle(choiceTitleSpanStyle) {
-                                withStyle(powerPointsStyle) {
-                                    append("Power Points: ")
-                                }
-                            }
-                        },
-                    )
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Icon(
-                            Icons.Default.KeyboardArrowUp,
-                            null,
-                            tint = Color.White,
-                            modifier = Modifier.clickable(onClick = viewModel::incrementPowerPointsExchanged)
-                        )
-                        Text(
-                            buildAnnotatedString {
-                                withStyle(choiceTitleSpanStyle) {
-                                    withStyle(powerPointsStyle) {
-                                        append("${exchangedPoints.first.amount}")
-                                    }
-                                }
-                            },
-                        )
-                        Icon(
-                            Icons.Default.KeyboardArrowDown,
-                            null,
-                            tint = Color.White,
-                            modifier = Modifier.clickable(onClick = viewModel::decrementPowerPointsExchanged)
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Icon(Icons.Default.ArrowForward, null, tint = Color.White)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        buildAnnotatedString {
-                            withStyle(choiceTitleSpanStyle) {
-                                withStyle(goldPointsStyle) {
-                                    append("${exchangedPoints.second.amount} Gold Points")
-                                }
-                            }
-                        },
-                    )
-                }
+                )
             }
         }
 

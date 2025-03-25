@@ -6,10 +6,15 @@ import com.freakycyoas.supersluts.theme.fatePointsStyle
 data class FatePoints(override val amount: Int): Points {
     companion object {
         val style = fatePointsStyle
+
+        val name = "Fate Points"
     }
 
     override val style: SpanStyle
         get() = Companion.style
+
+    override val name: String
+        get() = Companion.name
 
     operator fun plus(other: FatePoints): FatePoints {
         return (this.amount + other.amount).fp

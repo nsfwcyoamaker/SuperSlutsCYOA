@@ -49,7 +49,7 @@ class MainPageViewModel {
                 IdentitySection,
                 JobSection,
                 BaseSection,
-                //perks
+                PerksSection,
                 //superheroines
                 //supervillains
                 //fate
