@@ -12,13 +12,9 @@ import com.freakycyoas.supersluts.model.PowerPoints
 @Immutable
 data class PowerLevel(
     @Stable override val number: Int,
-    @Stable override val powerPoints: PowerPoints,
-    @Stable override val description: AnnotatedString
-): ChoiceLevel {
-    @Stable
-    override val goldPoints: GoldPoints? get() = null
-    @Stable
-    override val outfitGoldPoints: GoldPoints? get() = null
-    @Stable
-    override val fatePoints: FatePoints? get() = null
-}
+    @Stable override val powerPoints: PowerPoints? = null,
+    @Stable override val description: AnnotatedString,
+    @Stable override val goldPoints: GoldPoints? = null,
+    @Stable override val outfitGoldPoints: GoldPoints? = null,
+    @Stable override val fatePoints: FatePoints? = null,
+): ChoiceLevel

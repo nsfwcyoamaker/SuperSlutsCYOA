@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
@@ -871,6 +872,7 @@ private fun PointTransferMainChoiceItem(
     ) {
         Column(
             modifier = Modifier
+                .weight(1f)
                 .drawWithContent {
                     drawContent()
                     if(choiceState.isSelected) {
@@ -900,8 +902,6 @@ private fun PointTransferMainChoiceItem(
                 }
                 .background(color = BlackBoxBackgroundColor),
         )
-
-        Box(modifier = Modifier.weight(1f))
     }
 }
 
@@ -912,8 +912,8 @@ fun MixedChoicesRow(
     onLevelSelected: (LeveledMainChoice, ChoiceLevel) -> Unit,
     onMultibuyChangeAmount: (MultibuyMainChoice, newAmount: Int) -> Unit,
     onMultiselectAddChoice: (MultiselectMainChoice) -> Unit,
-    onMultiselectRemoveChoice: (MultiselectMainChoice, Choice) -> Unit,
-    onMultiselectSelectedChoice: (MultiselectMainChoice, Choice, Choice) -> Unit,
+    onMultiselectRemoveChoice: (Choice) -> Unit,
+    onMultiselectSelectedChoice: (Choice, Choice) -> Unit,
     onPointTransferAmountChanged: (PointTransferMainChoice, amount: Int) -> Unit,
     choiceWidth: Dp = choiceRowItemWidth,
     itemSpacing: Dp = choiceRowSpacingWidth,
@@ -959,8 +959,8 @@ fun MixedChoicesRow(
                             choiceState = choiceState,
                             hasDrawback = choiceState.choice.getLinkedDrawbackChoice() != null,
                             onMultiselectAddChoice = { onMultiselectAddChoice(choiceState.choice) },
-                            onMultiselectRemoveChoice = { onMultiselectRemoveChoice(choiceState.choice, it) },
-                            onMultiselectSelectedChoice = { remove, add -> onMultiselectSelectedChoice(choiceState.choice, remove, add) },
+                            onMultiselectRemoveChoice = { onMultiselectRemoveChoice(it) },
+                            onMultiselectSelectedChoice = { remove, add -> onMultiselectSelectedChoice(remove, add) },
                             width = choiceWidth,
                             modifier = Modifier.fillMaxHeight(),
                         )
@@ -1031,6 +1031,7 @@ fun PointTransfer(
     gainedPoints: Points,
     enabled: Boolean,
     onAmountChanged: (Int) -> Unit,
+    additionalTextStyles: List<SpanStyle> = emptyList(),
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -1040,11 +1041,11 @@ fun PointTransfer(
     ) {
         Text(
             buildAnnotatedString {
-                withStyle(choiceTitleSpanStyle) {
-                    withStyle(consumedPoints.style) {
-                        append(consumedPoints.name + ": ")
-                    }
+                additionalTextStyles.forEach { pushStyle(it) }
+                withStyle(consumedPoints.style) {
+                    append(consumedPoints.name + ": ")
                 }
+                repeat(additionalTextStyles.size) { pop() }
             },
         )
         Column(
@@ -1061,11 +1062,11 @@ fun PointTransfer(
             )
             Text(
                 buildAnnotatedString {
-                    withStyle(choiceTitleSpanStyle) {
-                        withStyle(consumedPoints.style) {
-                            append("${consumedPoints.amount}")
-                        }
+                    additionalTextStyles.forEach { pushStyle(it) }
+                    withStyle(consumedPoints.style) {
+                        append("${consumedPoints.amount}")
                     }
+                    repeat(additionalTextStyles.size) { pop() }
                 },
             )
             Icon(
@@ -1083,11 +1084,11 @@ fun PointTransfer(
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             buildAnnotatedString {
-                withStyle(choiceTitleSpanStyle) {
-                    withStyle(gainedPoints.style) {
-                        append("${gainedPoints.amount} ${gainedPoints.name}")
-                    }
+                additionalTextStyles.forEach { pushStyle(it) }
+                withStyle(gainedPoints.style) {
+                    append("${gainedPoints.amount} ${gainedPoints.name}")
                 }
+                repeat(additionalTextStyles.size) { pop() }
             },
         )
     }

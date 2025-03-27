@@ -69,7 +69,7 @@ class OutfitFeatureArmor(
             (it as PowerLevel).let {
                 OutfitGoldLevel(
                     number = it.number,
-                    outfitGoldPoints = (floor(it.powerPoints.amount.toDouble() / 2.0).toInt()).gp,
+                    outfitGoldPoints = (floor(it.powerPoints!!.amount.toDouble() / 2.0).toInt()).gp,
                     description = it.description,
                 )
             }

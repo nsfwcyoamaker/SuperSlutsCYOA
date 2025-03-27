@@ -51,6 +51,10 @@ val PrisonPointsColor: Color
     @Stable
     get() = Color(0xFF22B14C)
 
+val CustomizationPointsColor: Color
+    @Stable
+    get() = Color(0xFFF000EA)
+
 val selectedChoiceOverlayColor: Color
     @Stable
     get() = Color(0x90AC2226)

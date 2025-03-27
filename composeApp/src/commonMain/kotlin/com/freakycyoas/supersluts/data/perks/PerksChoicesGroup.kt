@@ -13,4 +13,10 @@ object PerksChoicesGroup: ChoicesGroup by MultipleMixedChoiceSelector(listOf(
     PerkPrManager,
     PerkGrapplingGun,
     PerkConsentContract,
+    PerkSidekick,
+    PerkTeamLeader,
+    PerkReformedSupervillains,
+    PerkGeneticModifications(),
+    PerkPrivacyProtection,
+    PerkGynoid(),
 ))

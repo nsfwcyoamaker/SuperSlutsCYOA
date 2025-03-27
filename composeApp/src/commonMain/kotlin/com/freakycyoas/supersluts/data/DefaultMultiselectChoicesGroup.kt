@@ -10,9 +10,22 @@ class DefaultMultiselectChoicesGroup(override val choices: List<MultiselectMainC
         require(choices.withDrawbacks.any { it::class == choice::class })
 
         return when {
-            choice is MultiselectMainChoice && (allSelectedChoices.singleOrNull { it::class == choice::class } as? MultiselectMainChoice)?.selectedChoices.let { it != null && it == choice.selectedChoices } -> allSelectedChoices.filter { it::class != choice::class }
-            choice is MultiselectMainChoice && (allSelectedChoices.singleOrNull { it::class == choice::class } as? MultiselectMainChoice)?.selectedChoices.let { it != null && it != choice.selectedChoices } -> allSelectedChoices.filter { it::class != choice::class }.plus(choice)
-            choice is MultiselectMainChoice && allSelectedChoices.none { it::class == choice::class } -> allSelectedChoices.plus(choice)
+            choice is MultiselectMainChoice -> {
+                val choiceInState = (allSelectedChoices.singleOrNull { it::class == choice::class } as? MultiselectMainChoice)
+
+                if(choiceInState != null) {
+                    val selectionInState = choiceInState.getSelectedChoices(allSelectedChoices)
+                    val newSelection = choice.getSelectedChoices(allSelectedChoices)
+
+                    if(selectionInState == newSelection) {
+                        allSelectedChoices.filter { it::class != choice::class }
+                    } else {
+                        allSelectedChoices.filter { it::class != choice::class }.plus(choice)
+                    }
+                } else {
+                    allSelectedChoices.plus(choice)
+                }
+            }
 
             choice is DrawbackChoice && allSelectedChoices.contains(choice) -> allSelectedChoices.minus(choice)
             choice is DrawbackChoice && !allSelectedChoices.contains(choice) -> allSelectedChoices.plus(choice)

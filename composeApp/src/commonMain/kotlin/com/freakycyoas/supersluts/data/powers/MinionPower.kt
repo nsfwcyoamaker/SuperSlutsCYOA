@@ -25,7 +25,7 @@ class MinionPower private constructor(
         selectedLevel?.coerceIn(1..maxLevel),
         power.levels
             .filter{ it.number <= maxLevel }
-            .map { (it as PowerLevel).copy(powerPoints = (it.powerPoints.amount / 2).pp) }
+            .map { (it as PowerLevel).copy(powerPoints = (it.powerPoints!!.amount / 2).pp) }
     )
 
     @Stable override val levels: List<ChoiceLevel> = levels

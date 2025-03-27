@@ -53,6 +53,7 @@ object SponsorSection: MainPageSection {
                     gainedPoints = exchangedPoints.gainedPoints(),
                     enabled = true,
                     onAmountChanged = viewModel::powerPointsExchangeAmountChanged,
+                    additionalTextStyles = listOf(choiceTitleSpanStyle),
                     modifier = Modifier
                         .clip(BottomRightCornerCutShape)
                         .background(color = BlackBoxBackgroundColor)

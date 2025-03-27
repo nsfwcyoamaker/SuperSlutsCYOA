@@ -12,9 +12,10 @@ import com.freakycyoas.supersluts.theme.goldPointsStyle
 import superslutscyoa.composeapp.generated.resources.Res
 import superslutscyoa.composeapp.generated.resources.outfit_features_POWER_ENHANCING_OUTFIT
 
-class OutfitFeaturePowerEnhancingOutfit(
-    override val selectedChoices: List<Choice> = emptyList()
-): MultiselectMainChoice,
+private val baseCost = (-15).gp
+private val dawnGeneticsDiscountedCost = (-5).gp
+
+object OutfitFeaturePowerEnhancingOutfit: MultiselectMainChoice,
     MainChoice by SimpleMainChoice(
         image = Res.drawable.outfit_features_POWER_ENHANCING_OUTFIT,
         name = "POWER ENHANCING OUTFIT",
@@ -26,28 +27,23 @@ class OutfitFeaturePowerEnhancingOutfit(
             append(" less.")
         },
         outfitGoldPoints = baseCost,
-    ),
-    PointsBearerItem {
+    ) {
 
-    companion object {
-        private val baseCost = (-15).gp
-        private val dawnGeneticsDiscountedCost = (-5).gp
+    override fun getSelectedChoices(allChoice: List<Choice>): List<OutfitEnhancedPower> {
+        return allChoice.filterIsInstance<OutfitEnhancedPower>()
     }
 
-    override fun getPossibleSelections(allChoice: List<Choice>): List<Choice> {
+    override fun getPossibleSelections(allChoice: List<Choice>): List<OutfitEnhancedPower> {
         val powers = PowersChoicesGroup.choices.map { power -> power::class }
         return allChoice
             .filterIsInstance<LeveledMainChoice>()
             .filter { choice -> choice::class in powers }
             .filter { power -> power.selectedLevel == 1 }
-            .minus(selectedChoices.toSet())
+            .minus(getSelectedChoices(allChoice).map { it.power }.toSet())
+            .map { OutfitEnhancedPower(it) }
     }
 
-    override fun ofSelections(choices: List<Choice>): MultiselectMainChoice {
-        return OutfitFeaturePowerEnhancingOutfit(choices)
-    }
-
-    override fun canBeTaken(allSelectedChoices: List<Choice>): Boolean = selectedChoices.isNotEmpty() || getPossibleSelections(allSelectedChoices).isNotEmpty()
+    override fun canBeTaken(allSelectedChoices: List<Choice>): Boolean = getSelectedChoices(allSelectedChoices).isNotEmpty() || getPossibleSelections(allSelectedChoices).isNotEmpty()
 
     override fun getLinkedDrawbackChoice(): DrawbackChoice? = null
 
@@ -65,7 +61,7 @@ class OutfitFeaturePowerEnhancingOutfit(
             baseCost
         }
 
-        return cost * selectedChoices.size
+        return cost * getSelectedChoices(allSelectedChoices).size
     }
 
     @Stable

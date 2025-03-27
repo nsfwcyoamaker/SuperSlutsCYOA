@@ -5,7 +5,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.AnnotatedString
-import com.freakycyoas.supersluts.data.powers.PowersChoicesGroup
 import com.freakycyoas.supersluts.data.powers.PowersNaturalWeapon
 import com.freakycyoas.supersluts.model.LeveledChoiceState
 import com.freakycyoas.supersluts.model.LeveledChoiceView
@@ -20,7 +19,7 @@ import com.freakycyoas.supersluts.viewmodel.PowersSectionViewModel
 object PowersSection: MainPageSection {
     @Composable
     override fun getItems(): List<@Composable () -> Unit> {
-        val viewModel = remember(PowersChoicesGroup) { PowersSectionViewModel(PowersChoicesGroup) }
+        val viewModel = remember { PowersSectionViewModel() }
         val choices by viewModel.powers.collectAsState(emptyList())
         val naturalWeaponSlots by viewModel.additionalNaturalWeapons.collectAsState(null)
 

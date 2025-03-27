@@ -7,40 +7,38 @@ import androidx.compose.ui.text.withStyle
 import com.freakycyoas.supersluts.data.SimpleMainChoice
 import com.freakycyoas.supersluts.data.sponsor.SponsorWaltDisney
 import com.freakycyoas.supersluts.model.*
+import com.freakycyoas.supersluts.theme.customizationPointsStyle
 import com.freakycyoas.supersluts.theme.goldPointsStyle
-import com.freakycyoas.supersluts.theme.prisonPointsStyle
 import superslutscyoa.composeapp.generated.resources.Res
-import superslutscyoa.composeapp.generated.resources.perks_PRIVATE_PRISON
+import superslutscyoa.composeapp.generated.resources.perks_GYNOID
 
-private val baseCost = (-20).gp
+private val baseCost = (-8).gp
 
 @Immutable
 @Stable
-class PerkPrivatePrison(override val amountTransferred: Int? = null): PointTransferMainChoice, MainChoice by SimpleMainChoice(
-    image = Res.drawable.perks_PRIVATE_PRISON,
-    name = "PRIVATE PRISON",
+class PerkGynoid(override val amountTransferred: Int? = null): PointTransferMainChoice, MainChoice by SimpleMainChoice(
+    image = Res.drawable.perks_GYNOID,
+    name = "GYNOID",
     text = buildAnnotatedString {
-        append("Throwing supervillains into prison might feel a bit unsatisfying. So why not run your own prison and make sure the villains you catch get what they deserve? Create your own prison using the Super Prison CYOA, you must choose to be the warden. If you want more ")
-        withStyle(prisonPointsStyle) { append("Prison Points") }
-        append(" for your prison you can convert ")
+        append("Ever wanted to own a hot female android? Well, today is your lucky day! Just fill in this form and you can have your own custom-built gynoid! You could use her as a maid, sidekick, sex robot or whatever you want really. Create your gynoid using the Dibella Corp CYOA, you must choose to get the gynoid and you can't purchase Hacking. You can convert ")
         withStyle(goldPointsStyle) { append("Gold Points") }
         append(" into ")
-        withStyle(prisonPointsStyle) { append("Prison Points") }
+        withStyle(customizationPointsStyle) { append("Customization points") }
         append(" at a rate of ")
         withStyle(goldPointsStyle) { append("1 Gold Point") }
         append(" to ")
-        withStyle(prisonPointsStyle) { append("3 Prison Points") }
+        withStyle(customizationPointsStyle) { append("2 Customization points") }
         append(".")
     },
     incompatibleWith = { listOf(SponsorWaltDisney) },
-    goldPoints = baseCost
+    goldPoints = baseCost,
 ) {
     override fun ofAmount(newAmount: Int): PointTransferMainChoice {
-        return PerkPrivatePrison(newAmount)
+        return PerkGynoid(newAmount)
     }
 
-    override fun grantedPoints(): PrisonPoints {
-        return ((amountTransferred ?: 0) * 3).prisonPoints
+    override fun grantedPoints(): CustomizationPoints {
+        return ((amountTransferred ?: 0) * 2).customizationPoints
     }
 
     override fun consumedPoints(): GoldPoints {

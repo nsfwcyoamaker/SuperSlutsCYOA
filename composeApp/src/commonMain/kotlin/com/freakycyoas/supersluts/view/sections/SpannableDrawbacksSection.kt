@@ -16,7 +16,7 @@ import com.freakycyoas.supersluts.viewmodel.SimpleSectionViewModel
 class SpannableDrawbacksSection(val title: String, val description: AnnotatedString, val group: ChoicesGroup): MainPageSection {
     @Composable
     override fun getItems(): List<@Composable () -> Unit> {
-        val viewModel = remember(group) { SimpleSectionViewModel(group) }
+        val viewModel = remember { SimpleSectionViewModel(group) }
         val choices by viewModel.choicesView.collectAsState(emptyList())
 
         val header: @Composable () -> Unit = @Composable { SectionHeader(title, description) }

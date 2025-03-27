@@ -2,12 +2,13 @@ package com.freakycyoas.supersluts.viewmodel
 
 import com.freakycyoas.supersluts.di.global
 import com.freakycyoas.supersluts.model.*
+import com.freakycyoas.supersluts.utils.replace
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.kodein.di.instance
 
-class MixedSectionViewModel(val group: ChoicesGroup) {
-    private val mainStateViewModel: MainStateViewModel by global.instance()
+open class MixedSectionViewModel(private val group: ChoicesGroup) {
+    protected val mainStateViewModel: MainStateViewModel by global.instance()
 
     private fun PointTransferMainChoice.makePointTransferChoiceView(allChoices: List<Choice>): PointTransferChoiceView {
         val selectedInstance = allChoices
@@ -39,7 +40,7 @@ class MixedSectionViewModel(val group: ChoicesGroup) {
         return MultiselectChoiceView(
             mainChoice = MultiselectChoiceState(
                 choice = this,
-                selectedChoices = selectedInstance.selectedChoices,
+                selectedChoices = selectedInstance.getSelectedChoices(allChoices),
                 selectableChoices = selectedInstance.getPossibleSelections(allChoices),
                 isEnabled = this.canBeTaken(allChoices),
             ),
@@ -165,41 +166,17 @@ class MixedSectionViewModel(val group: ChoicesGroup) {
                 .singleOrNull { it::class == choice::class }
                 ?: choice
 
-            val newSelection = selectedInstance.getPossibleSelections(it).first()
-            val alteredInstance = selectedInstance.ofSelections(selectedInstance.selectedChoices + newSelection)
-            group.onChoiceSelected(alteredInstance, it)
+            it + selectedInstance.getPossibleSelections(it).first()
         }
     }
 
-    fun onMultiselectRemoveChoice(choice: MultiselectMainChoice, toRemove: Choice) {
-        mainStateViewModel.selectedChoices = mainStateViewModel.selectedChoices.let {
-            val selectedInstance = it
-                .filterIsInstance<MultiselectMainChoice>()
-                .singleOrNull { it::class == choice::class }
-                ?: choice
-
-            val alteredInstance = selectedInstance.ofSelections(selectedInstance.selectedChoices - toRemove)
-            group.onChoiceSelected(alteredInstance, it)
-        }
+    fun onMultiselectRemoveChoice(toRemove: Choice) {
+        mainStateViewModel.selectedChoices -= toRemove
     }
 
-    fun onMultiselectSelectedChoice(choice: MultiselectMainChoice, previousSelection: Choice, newSelection: Choice) {
-        mainStateViewModel.selectedChoices = mainStateViewModel.selectedChoices.let {
-            val selectedInstance = it
-                .filterIsInstance<MultiselectMainChoice>()
-                .singleOrNull { it::class == choice::class }
-                ?: choice
-
-            val alteredInstance = selectedInstance.ofSelections(
-                selectedInstance.selectedChoices
-                    .toMutableList()
-                    .apply {
-                        this[indexOf(previousSelection)] = newSelection
-                    }
-                    .toList()
-            )
-            group.onChoiceSelected(alteredInstance, it)
-        }
+    fun onMultiselectSelectedChoice(previousSelection: Choice, newSelection: Choice) {
+        mainStateViewModel.selectedChoices = mainStateViewModel.selectedChoices
+            .replace(previousSelection, newSelection)
     }
 
     fun onPointTransferAmountChanged(choice: PointTransferMainChoice, newAmount: Int) {

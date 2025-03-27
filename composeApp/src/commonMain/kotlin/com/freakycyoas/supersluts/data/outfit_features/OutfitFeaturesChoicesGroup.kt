@@ -12,7 +12,7 @@ object OutfitFeaturesChoicesGroup: ChoicesGroup by MultipleMixedChoiceSelector(l
     OutfitFeatureNanoOutfit,
     OutfitFeatureArmor(),
     OutfitFeatureWeapon(),
-    OutfitFeaturePowerEnhancingOutfit(),
+    OutfitFeaturePowerEnhancingOutfit,
     OutfitFeatureBoobWindow,
     OutfitFeatureVCleavage,
     OutfitFeatureOpenTop,

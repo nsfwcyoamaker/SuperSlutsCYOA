@@ -85,6 +85,14 @@ val prisonPointsStyle
         shadow = Shadow(color = Color.Black, blurRadius = 2f),
     )
 
+val customizationPointsStyle
+    @Stable
+    get() = SpanStyle(
+        color = CustomizationPointsColor,
+        fontWeight = FontWeight.Bold,
+        shadow = Shadow(color = Color.Black, blurRadius = 2f),
+    )
+
 val choiceTitleParagraphStyle
     @Stable
     get() = ParagraphStyle(

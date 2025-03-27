@@ -1,6 +1,7 @@
 package com.freakycyoas.supersluts.viewmodel
 
 import com.freakycyoas.supersluts.data.powers.PowersAdditionalNaturalWeapon
+import com.freakycyoas.supersluts.data.powers.PowersChoicesGroup
 import com.freakycyoas.supersluts.data.powers.PowersNaturalWeapon
 import com.freakycyoas.supersluts.di.global
 import com.freakycyoas.supersluts.model.*
@@ -9,8 +10,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.kodein.di.instance
 
-class PowersSectionViewModel(val group: LeveledChoicesGroup) {
+class PowersSectionViewModel {
     private val mainStateViewModel: MainStateViewModel by global.instance()
+    private val group = PowersChoicesGroup
 
     private fun LeveledMainChoice.makeLeveledChoiceView(allChoices: List<Choice>): LeveledChoiceView {
         return LeveledChoiceView(

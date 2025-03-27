@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.kodein.di.instance
 
-open class SimpleSectionViewModel(val group: ChoicesGroup) {
+open class SimpleSectionViewModel(private val group: ChoicesGroup) {
     protected val mainStateViewModel: MainStateViewModel by global.instance()
 
     val choicesView: Flow<List<ChoiceView>> by lazy {
