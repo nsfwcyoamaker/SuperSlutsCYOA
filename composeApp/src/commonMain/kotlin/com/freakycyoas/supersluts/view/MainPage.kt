@@ -1,5 +1,6 @@
 package com.freakycyoas.supersluts.view
 
+import androidx.compose.foundation.LocalScrollbarStyle
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.freakycyoas.supersluts.viewmodel.MainPageViewModel
@@ -23,14 +25,13 @@ fun MainPage() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        //TODO scrollbar hovers over content instead of occupying space (use box not row)
-        Row(
+        Box(
             modifier = Modifier.weight(1f).fillMaxWidth(),
         ) {
             val lazyListState = rememberLazyListState()
             LazyColumn(
                 state = lazyListState,
-                modifier = Modifier.weight(1f).fillMaxHeight(),
+                modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
                 items(sectionsItems) { sectionItem ->
@@ -39,7 +40,12 @@ fun MainPage() {
             }
 
             VerticalScrollbar(
-                adapter = rememberScrollbarAdapter(lazyListState)
+                adapter = rememberScrollbarAdapter(lazyListState),
+                modifier = Modifier.align(Alignment.CenterEnd),
+                style = LocalScrollbarStyle.current.copy(
+                    minimalHeight = 120.dp,
+                    thickness = 18.dp,
+                )
             )
         }
 
