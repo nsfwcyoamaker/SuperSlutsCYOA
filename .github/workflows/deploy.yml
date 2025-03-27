@@ -1,0 +1,66 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build project
+        run: ./gradlew wasmJsBrowserDistribution
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-dist
+          path: composeApp/build/dist/wasmJs/productionExecutable
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensures full history is cloned
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: wasm-dist
+          path: public
+
+      - name: Ensure repository directory
+        run: cd ${{ github.workspace }}
+
+      - name: Initialize Git (if needed)
+        run: |
+          git rev-parse --is-inside-work-tree || git init
+          git remote add origin https://github.com/${{ github.repository }}.git || true
+
+      - name: Configure GitHub Pages
+        run: touch public/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: public
+          token: ${{ secrets.GH_PAT }}
+
